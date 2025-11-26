@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NEET Botany Resources</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <svg width="42" height="42" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect rx="6" width="24" height="24" fill="#052032"></rect>
+          <path d="M7 9h10M7 13h6" stroke="#7dd3fc" stroke-width="1.2" stroke-linecap="round"></path>
+        </svg>
+        <div>
+          <h1>NEET Botany — Resource Hub</h1>
+          <div class="subtitle">Organized by Class · Chapter · Topic · Tags</div>
+        </div>
+      </div>
+      <div class="meta-info">Offline friendly · Free</div>
+    </header>
+
+    <div class="controls">
+      <select id="classFilter" aria-label="Class filter"><option value="">All Classes</option></select>
+      <select id="chapterFilter" aria-label="Chapter filter"><option value="">All Chapters</option></select>
+      <select id="tagFilter" aria-label="Tag filter"><option value="">All Concepts/Tags</option></select>
+      <input id="searchBox" type="search" placeholder="Search by keyword, concept, filename..." aria-label="Search resources">
+      <button id="resetBtn" type="button">Reset</button>
+    </div>
+
+    <div id="grid" class="grid" aria-live="polite"></div>
+    <div id="noresult" class="empty" style="display:none">No resources found. Try clearing filters.</div>
+
+    <footer>Tip: store thumbnails at <code>resources/thumbs/</code> (or let thumbnails be generated client-side).</footer>
+  </div>
+
+  <!-- modal viewer (same as before) -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1"></div>
+
+  <!-- PDF.js -->
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3/build/pdf.min.js"></script>
+
+  <!-- App script -->
+  <script src="app.js"></script>
+</body>
+</html>

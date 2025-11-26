@@ -1,0 +1,123 @@
+[
+  {
+    "id": "72b1e346",
+    "class": "11",
+    "chapter": "Anatomy_of_Flowering_Plants",
+    "topic": "DICOT LEAF VS MONOCOT LEAF",
+    "type": "pdf",
+    "title": "DICOT LEAF VS MONOCOT LEAF",
+    "file": "resources/11/Anatomy_of_Flowering_Plants/DICOT LEAF VS MONOCOT LEAF.pdf",
+    "tags": [
+      "anatomy"
+    ]
+  },
+  {
+    "id": "01418dfb",
+    "class": "11",
+    "chapter": "Anatomy_of_Flowering_Plants",
+    "topic": "DICOT ROOT VS MONOCOT ROOT",
+    "type": "pdf",
+    "title": "DICOT ROOT VS MONOCOT ROOT",
+    "file": "resources/11/Anatomy_of_Flowering_Plants/DICOT ROOT VS MONOCOT ROOT.pdf",
+    "tags": [
+      "anatomy"
+    ]
+  },
+  {
+    "id": "489b2e54",
+    "class": "11",
+    "chapter": "Anatomy_of_Flowering_Plants",
+    "topic": "DICOT STEM VS MONOCOT STEM",
+    "type": "pdf",
+    "title": "DICOT STEM VS MONOCOT STEM",
+    "file": "resources/11/Anatomy_of_Flowering_Plants/DICOT STEM VS MONOCOT STEM.pdf",
+    "tags": [
+      "anatomy"
+    ]
+  },
+  {
+    "id": "08fa13f7",
+    "class": "11",
+    "chapter": "The_Living_World",
+    "topic": "notes",
+    "type": "pdf",
+    "title": "notes",
+    "file": "resources/11/The_Living_World/notes.pdf",
+    "tags": [
+      "introduction",
+      "living_world",
+      "notes"
+    ]
+  },
+  {
+    "id": "35414c34",
+    "class": "12",
+    "chapter": "Microbes_in_Human_Welfare",
+    "topic": "MICROBES IN HUMAN WELFARE MIND MAP",
+    "type": "pdf",
+    "title": "MICROBES IN HUMAN WELFARE MIND MAP",
+    "file": "resources/12/Microbes_in_Human_Welfare/MICROBES IN HUMAN WELFARE MIND MAP.pdf",
+    "tags": [
+      "biotech",
+      "map",
+      "microbes"
+    ]
+  },
+  {
+    "id": "a2157ba1",
+    "class": "12",
+    "chapter": "Molecular_Basis_of_Inheritance",
+    "topic": "MOLECULAR BASIS OF INHERITANCE MIND MAP",
+    "type": "pdf",
+    "title": "MOLECULAR BASIS OF INHERITANCE MIND MAP",
+    "file": "resources/12/Molecular_Basis_of_Inheritance/MOLECULAR BASIS OF INHERITANCE MIND MAP.pdf",
+    "tags": [
+      "dna",
+      "map",
+      "molecular_genetics"
+    ]
+  },
+  {
+    "id": "a01a0dd2",
+    "class": "12",
+    "chapter": "Organisms_and_Populations",
+    "topic": "ORGANISMS AND POPULATIONS MIND MAP",
+    "type": "pdf",
+    "title": "ORGANISMS AND POPULATIONS MIND MAP",
+    "file": "resources/12/Organisms_and_Populations/ORGANISMS AND POPULATIONS MIND MAP.pdf",
+    "tags": [
+      "map",
+      "organisms",
+      "population"
+    ]
+  },
+  {
+    "id": "982dc4ad",
+    "class": "12",
+    "chapter": "Principle_of_Inheritance_and_Variation",
+    "topic": "PRINCIPLES OF INHERITANCE AND VARIATION MIND MAP",
+    "type": "pdf",
+    "title": "PRINCIPLES OF INHERITANCE AND VARIATION MIND MAP",
+    "file": "resources/12/Principle_of_Inheritance_and_Variation/PRINCIPLES OF INHERITANCE AND VARIATION MIND MAP.pdf",
+    "tags": [
+      "genetics",
+      "inheritance",
+      "map"
+    ]
+  },
+  {
+    "id": "3521f653",
+    "class": "12",
+    "chapter": "Sexual_Reproduction_in_Flowering_Plants",
+    "topic": "SEXUAL REPRODUCTION IN FLOWERING PLANTS MIND MAP",
+    "type": "pdf",
+    "title": "SEXUAL REPRODUCTION IN FLOWERING PLANTS MIND MAP",
+    "file": "resources/12/Sexual_Reproduction_in_Flowering_Plants/SEXUAL REPRODUCTION IN FLOWERING PLANTS MIND MAP.pdf",
+    "tags": [
+      "flowchart",
+      "flower",
+      "map",
+      "reproduction"
+    ]
+  }
+]

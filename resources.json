@@ -50,6 +50,32 @@
     ]
   },
   {
+    "id": "af1a1c82",
+    "class": "11",
+    "chapter": "Photosynthesis_in_Higher_Plants",
+    "topic": "C3 Pathways  VS   C4 Pathways",
+    "type": "pdf",
+    "title": "C3 Pathways  VS   C4 Pathways",
+    "file": "resources/11/Photosynthesis_in_Higher_Plants/C3 Pathways  VS   C4 Pathways.pdf",
+    "tags": [
+      "pathway",
+      "photosynthesis",
+      "pigments"
+    ]
+  },
+  {
+    "id": "7133295e",
+    "class": "11",
+    "chapter": "Respiration_in_Plants",
+    "topic": "Glycolysis",
+    "type": "pdf",
+    "title": "Glycolysis",
+    "file": "resources/11/Respiration_in_Plants/Glycolysis.pdf",
+    "tags": [
+      "respiration"
+    ]
+  },
+  {
     "id": "08fa13f7",
     "class": "11",
     "chapter": "The_Living_World",

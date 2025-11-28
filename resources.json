@@ -9,7 +9,8 @@
     "file": "resources/11/Anatomy_of_Flowering_Plants/DICOT LEAF VS MONOCOT LEAF.pdf",
     "tags": [
       "anatomy"
-    ]
+    ],
+    "thumbnail": "resources/thumbs/DICOT LEAF VS MONOCOT LEAF.png"
   },
   {
     "id": "01418dfb",
@@ -21,7 +22,8 @@
     "file": "resources/11/Anatomy_of_Flowering_Plants/DICOT ROOT VS MONOCOT ROOT.pdf",
     "tags": [
       "anatomy"
-    ]
+    ],
+    "thumbnail": "resources/thumbs/DICOT ROOT VS MONOCOT ROOT.png"
   },
   {
     "id": "489b2e54",
@@ -33,7 +35,8 @@
     "file": "resources/11/Anatomy_of_Flowering_Plants/DICOT STEM VS MONOCOT STEM.pdf",
     "tags": [
       "anatomy"
-    ]
+    ],
+    "thumbnail": "resources/thumbs/DICOT STEM VS MONOCOT STEM.png"
   },
   {
     "id": "454825a6",
@@ -47,7 +50,8 @@
       "flowchart",
       "morphology",
       "notes"
-    ]
+    ],
+    "thumbnail": "resources/thumbs/Morphology of Flowering Plants Notes.png"
   },
   {
     "id": "af1a1c82",
@@ -61,7 +65,8 @@
       "pathway",
       "photosynthesis",
       "pigments"
-    ]
+    ],
+    "thumbnail": "resources/thumbs/C3 Pathways  VS   C4 Pathways.png"
   },
   {
     "id": "7133295e",
@@ -73,7 +78,8 @@
     "file": "resources/11/Respiration_in_Plants/Glycolysis.pdf",
     "tags": [
       "respiration"
-    ]
+    ],
+    "thumbnail": "resources/thumbs/Glycolysis.png"
   },
   {
     "id": "08fa13f7",
@@ -87,7 +93,8 @@
       "introduction",
       "living_world",
       "notes"
-    ]
+    ],
+    "thumbnail": "resources/thumbs/notes.png"
   },
   {
     "id": "35414c34",
@@ -101,7 +108,8 @@
       "biotech",
       "map",
       "microbes"
-    ]
+    ],
+    "thumbnail": "resources/thumbs/MICROBES IN HUMAN WELFARE MIND MAP.png"
   },
   {
     "id": "a2157ba1",
@@ -115,7 +123,8 @@
       "dna",
       "map",
       "molecular_genetics"
-    ]
+    ],
+    "thumbnail": "resources/thumbs/MOLECULAR BASIS OF INHERITANCE MIND MAP.png"
   },
   {
     "id": "a01a0dd2",
@@ -129,7 +138,8 @@
       "map",
       "organisms",
       "population"
-    ]
+    ],
+    "thumbnail": "resources/thumbs/ORGANISMS AND POPULATIONS MIND MAP.png"
   },
   {
     "id": "982dc4ad",
@@ -143,7 +153,8 @@
       "genetics",
       "inheritance",
       "map"
-    ]
+    ],
+    "thumbnail": "resources/thumbs/PRINCIPLES OF INHERITANCE AND VARIATION MIND MAP.png"
   },
   {
     "id": "3521f653",
@@ -158,6 +169,7 @@
       "flower",
       "map",
       "reproduction"
-    ]
+    ],
+    "thumbnail": "resources/thumbs/SEXUAL REPRODUCTION IN FLOWERING PLANTS MIND MAP.png"
   }
 ]

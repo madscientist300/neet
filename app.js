@@ -296,37 +296,53 @@
       modalEl.appendChild(wrap);
       return;
     }
-    if(res.type === 'pdf'){
+        if(res.type === 'pdf'){
       const modalEl = document.getElementById('modal');
       modalEl.innerHTML = '';
       modalEl.classList.add('active');
       modalEl.setAttribute('aria-hidden','false');
-      const wrap = document.createElement('div'); wrap.className='viewer';
-      const top = document.createElement('div'); top.className='top';
+
+      // build viewer wrapper
+      const wrap = document.createElement('div'); wrap.className = 'viewer';
+      const top = document.createElement('div'); top.className = 'top';
       const title = document.createElement('div'); title.id='vtitle'; title.textContent = res.title || '';
-      const close = document.createElement('button'); close.textContent='Close'; close.addEventListener('click', ()=>{ modalEl.classList.remove('active'); modalEl.setAttribute('aria-hidden','true'); modalEl.innerHTML='';});
+      const close = document.createElement('button'); close.textContent='Close';
+      close.addEventListener('click', ()=>{ modalEl.classList.remove('active'); modalEl.setAttribute('aria-hidden','true'); modalEl.innerHTML='';});
       top.appendChild(title); top.appendChild(close); wrap.appendChild(top);
-      const body = document.createElement('div'); body.style.flex='1'; body.style.display='flex'; body.style.alignItems='center'; body.style.justifyContent='center';
-      const canvas = document.createElement('canvas'); body.appendChild(canvas); wrap.appendChild(body);
+
+      // create iframe to load PDF.js viewer (remote)
+      const body = document.createElement('div');
+      body.style.flex = '1';
+      body.style.display = 'flex';
+      body.style.flexDirection = 'column';
+      body.style.overflow = 'hidden';
+
+      const iframe = document.createElement('iframe');
+      // Use Mozilla's hosted PDF.js viewer; encode the file URL properly
+      // build a raw.githubusercontent.com URL for the PDF (public repo, branch main)
+      const rawBase = 'https://raw.githubusercontent.com/madscientist300/neet/main/';
+      const rawUrl = rawBase + (res.file || '').replace(/^\/+/, '');
+      iframe.src = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(rawUrl)}`;
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.border = '0';
+      iframe.setAttribute('loading','lazy');
+
+      // in some environments iframe embedding may be blocked; provide fallback link above iframe
+      const fallback = document.createElement('div');
+      fallback.style.padding = '10px';
+      fallback.style.fontSize = '14px';
+      fallback.style.color = 'var(--muted)';
+      fallback.innerHTML = `If the preview does not load you can <a href="${res.file}" target="_blank" rel="noopener">open the PDF in a new tab</a>.`;
+
+      body.appendChild(fallback);
+      body.appendChild(iframe);
+      wrap.appendChild(body);
       modalEl.appendChild(wrap);
 
-      try{
-        const pdfDoc = await pdfjsLib.getDocument(res.file).promise;
-        const page = await pdfDoc.getPage(1);
-        const scale = 1.25;
-        const viewport = page.getViewport({ scale });
-        const ctx = canvas.getContext('2d');
-        const ratio = window.devicePixelRatio || 1;
-        canvas.width = Math.floor(viewport.width * ratio);
-        canvas.height = Math.floor(viewport.height * ratio);
-        canvas.style.width = Math.floor(viewport.width) + 'px';
-        canvas.style.height = Math.floor(viewport.height) + 'px';
-        ctx.setTransform(ratio,0,0,ratio,0,0);
-        await page.render({ canvasContext: ctx, viewport }).promise;
-      }catch(err){
-        console.error('Modal PDF render failed',err);
-        window.open(res.file,'_blank');
-      }
+      // prevent body scroll while modal open
+      document.body.style.overflow = 'hidden';
+
       return;
     }
     window.open(res.file,'_blank');

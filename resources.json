@@ -69,6 +69,20 @@
     "thumbnail": "resources/thumbs/C3 Pathways  VS   C4 Pathways.png"
   },
   {
+    "id": "f4cd46ba",
+    "class": "11",
+    "chapter": "Plant Growth and Development",
+    "topic": "PLANT GROWTH AND DEVELOPMENT MIND MAP",
+    "type": "pdf",
+    "title": "PLANT GROWTH AND DEVELOPMENT MIND MAP",
+    "file": "resources/11/Plant Growth and Development/PLANT GROWTH AND DEVELOPMENT MIND MAP.pdf",
+    "tags": [
+      "growth",
+      "hormones",
+      "map"
+    ]
+  },
+  {
     "id": "7133295e",
     "class": "11",
     "chapter": "Respiration_in_Plants",
@@ -171,5 +185,143 @@
       "reproduction"
     ],
     "thumbnail": "resources/thumbs/SEXUAL REPRODUCTION IN FLOWERING PLANTS MIND MAP.png"
+  },
+  {
+    "id": "2a8b2a63",
+    "class": "thumbs",
+    "chapter": "thumbs",
+    "topic": "C3 Pathways  VS   C4 Pathways",
+    "type": "image",
+    "title": "C3 Pathways  VS   C4 Pathways",
+    "file": "resources/thumbs/C3 Pathways  VS   C4 Pathways.png",
+    "tags": [
+      "pathway"
+    ]
+  },
+  {
+    "id": "04cee759",
+    "class": "thumbs",
+    "chapter": "thumbs",
+    "topic": "DICOT LEAF VS MONOCOT LEAF",
+    "type": "image",
+    "title": "DICOT LEAF VS MONOCOT LEAF",
+    "file": "resources/thumbs/DICOT LEAF VS MONOCOT LEAF.png",
+    "tags": []
+  },
+  {
+    "id": "71ad6f18",
+    "class": "thumbs",
+    "chapter": "thumbs",
+    "topic": "DICOT ROOT VS MONOCOT ROOT",
+    "type": "image",
+    "title": "DICOT ROOT VS MONOCOT ROOT",
+    "file": "resources/thumbs/DICOT ROOT VS MONOCOT ROOT.png",
+    "tags": []
+  },
+  {
+    "id": "6ffa7b2d",
+    "class": "thumbs",
+    "chapter": "thumbs",
+    "topic": "DICOT STEM VS MONOCOT STEM",
+    "type": "image",
+    "title": "DICOT STEM VS MONOCOT STEM",
+    "file": "resources/thumbs/DICOT STEM VS MONOCOT STEM.png",
+    "tags": []
+  },
+  {
+    "id": "7a695f7f",
+    "class": "thumbs",
+    "chapter": "thumbs",
+    "topic": "Glycolysis",
+    "type": "image",
+    "title": "Glycolysis",
+    "file": "resources/thumbs/Glycolysis.png",
+    "tags": []
+  },
+  {
+    "id": "cb5498f3",
+    "class": "thumbs",
+    "chapter": "thumbs",
+    "topic": "MICROBES IN HUMAN WELFARE MIND MAP",
+    "type": "image",
+    "title": "MICROBES IN HUMAN WELFARE MIND MAP",
+    "file": "resources/thumbs/MICROBES IN HUMAN WELFARE MIND MAP.png",
+    "tags": [
+      "map"
+    ]
+  },
+  {
+    "id": "fe523db5",
+    "class": "thumbs",
+    "chapter": "thumbs",
+    "topic": "MOLECULAR BASIS OF INHERITANCE MIND MAP",
+    "type": "image",
+    "title": "MOLECULAR BASIS OF INHERITANCE MIND MAP",
+    "file": "resources/thumbs/MOLECULAR BASIS OF INHERITANCE MIND MAP.png",
+    "tags": [
+      "map"
+    ]
+  },
+  {
+    "id": "3b585040",
+    "class": "thumbs",
+    "chapter": "thumbs",
+    "topic": "Morphology of Flowering Plants Notes",
+    "type": "image",
+    "title": "Morphology of Flowering Plants Notes",
+    "file": "resources/thumbs/Morphology of Flowering Plants Notes.png",
+    "tags": [
+      "flowchart",
+      "notes"
+    ]
+  },
+  {
+    "id": "51f0e02f",
+    "class": "thumbs",
+    "chapter": "thumbs",
+    "topic": "notes",
+    "type": "image",
+    "title": "notes",
+    "file": "resources/thumbs/notes.png",
+    "tags": [
+      "notes"
+    ]
+  },
+  {
+    "id": "a2177f55",
+    "class": "thumbs",
+    "chapter": "thumbs",
+    "topic": "ORGANISMS AND POPULATIONS MIND MAP",
+    "type": "image",
+    "title": "ORGANISMS AND POPULATIONS MIND MAP",
+    "file": "resources/thumbs/ORGANISMS AND POPULATIONS MIND MAP.png",
+    "tags": [
+      "map"
+    ]
+  },
+  {
+    "id": "8535698b",
+    "class": "thumbs",
+    "chapter": "thumbs",
+    "topic": "PRINCIPLES OF INHERITANCE AND VARIATION MIND MAP",
+    "type": "image",
+    "title": "PRINCIPLES OF INHERITANCE AND VARIATION MIND MAP",
+    "file": "resources/thumbs/PRINCIPLES OF INHERITANCE AND VARIATION MIND MAP.png",
+    "tags": [
+      "map"
+    ]
+  },
+  {
+    "id": "b125c151",
+    "class": "thumbs",
+    "chapter": "thumbs",
+    "topic": "SEXUAL REPRODUCTION IN FLOWERING PLANTS MIND MAP",
+    "type": "image",
+    "title": "SEXUAL REPRODUCTION IN FLOWERING PLANTS MIND MAP",
+    "file": "resources/thumbs/SEXUAL REPRODUCTION IN FLOWERING PLANTS MIND MAP.png",
+    "tags": [
+      "flowchart",
+      "map"
+    ]
   }
 ]

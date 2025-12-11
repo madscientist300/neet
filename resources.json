@@ -10,7 +10,7 @@
     "tags": [
       "anatomy"
     ],
-    "thumbnail": "resources/thumbs/DICOT LEAF VS MONOCOT LEAF.png"
+    "thumbnail": "assets/thumbs/DICOT LEAF VS MONOCOT LEAF.png"
   },
   {
     "id": "01418dfb",
@@ -23,7 +23,7 @@
     "tags": [
       "anatomy"
     ],
-    "thumbnail": "resources/thumbs/DICOT ROOT VS MONOCOT ROOT.png"
+    "thumbnail": "assets/thumbs/DICOT ROOT VS MONOCOT ROOT.png"
   },
   {
     "id": "489b2e54",
@@ -36,7 +36,7 @@
     "tags": [
       "anatomy"
     ],
-    "thumbnail": "resources/thumbs/DICOT STEM VS MONOCOT STEM.png"
+    "thumbnail": "assets/thumbs/DICOT STEM VS MONOCOT STEM.png"
   },
   {
     "id": "454825a6",
@@ -51,7 +51,7 @@
       "morphology",
       "notes"
     ],
-    "thumbnail": "resources/thumbs/Morphology of Flowering Plants Notes.png"
+    "thumbnail": "assets/thumbs/Morphology of Flowering Plants Notes.png"
   },
   {
     "id": "af1a1c82",
@@ -66,7 +66,7 @@
       "photosynthesis",
       "pigments"
     ],
-    "thumbnail": "resources/thumbs/C3 Pathways  VS   C4 Pathways.png"
+    "thumbnail": "assets/thumbs/C3 Pathways  VS   C4 Pathways.png"
   },
   {
     "id": "f4cd46ba",
@@ -80,7 +80,8 @@
       "growth",
       "hormones",
       "map"
-    ]
+    ],
+    "thumbnail": "assets/thumbs/PLANT GROWTH AND DEVELOPMENT MIND MAP.png"
   },
   {
     "id": "7133295e",
@@ -93,7 +94,7 @@
     "tags": [
       "respiration"
     ],
-    "thumbnail": "resources/thumbs/Glycolysis.png"
+    "thumbnail": "assets/thumbs/Glycolysis.png"
   },
   {
     "id": "08fa13f7",
@@ -108,7 +109,7 @@
       "living_world",
       "notes"
     ],
-    "thumbnail": "resources/thumbs/notes.png"
+    "thumbnail": "assets/thumbs/notes.png"
   },
   {
     "id": "35414c34",
@@ -123,7 +124,7 @@
       "map",
       "microbes"
     ],
-    "thumbnail": "resources/thumbs/MICROBES IN HUMAN WELFARE MIND MAP.png"
+    "thumbnail": "assets/thumbs/MICROBES IN HUMAN WELFARE MIND MAP.png"
   },
   {
     "id": "a2157ba1",
@@ -138,7 +139,7 @@
       "map",
       "molecular_genetics"
     ],
-    "thumbnail": "resources/thumbs/MOLECULAR BASIS OF INHERITANCE MIND MAP.png"
+    "thumbnail": "assets/thumbs/MOLECULAR BASIS OF INHERITANCE MIND MAP.png"
   },
   {
     "id": "a01a0dd2",
@@ -153,7 +154,7 @@
       "organisms",
       "population"
     ],
-    "thumbnail": "resources/thumbs/ORGANISMS AND POPULATIONS MIND MAP.png"
+    "thumbnail": "assets/thumbs/ORGANISMS AND POPULATIONS MIND MAP.png"
   },
   {
     "id": "982dc4ad",
@@ -168,7 +169,7 @@
       "inheritance",
       "map"
     ],
-    "thumbnail": "resources/thumbs/PRINCIPLES OF INHERITANCE AND VARIATION MIND MAP.png"
+    "thumbnail": "assets/thumbs/PRINCIPLES OF INHERITANCE AND VARIATION MIND MAP.png"
   },
   {
     "id": "3521f653",
@@ -184,7 +185,7 @@
       "map",
       "reproduction"
     ],
-    "thumbnail": "resources/thumbs/SEXUAL REPRODUCTION IN FLOWERING PLANTS MIND MAP.png"
+    "thumbnail": "assets/thumbs/SEXUAL REPRODUCTION IN FLOWERING PLANTS MIND MAP.png"
   },
   {
     "id": "2a8b2a63",

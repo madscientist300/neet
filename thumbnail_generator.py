@@ -92,7 +92,7 @@ def main():
     parser = argparse.ArgumentParser(description="Generate thumbnails for PDF/Image resources.")
     parser.add_argument("--root", default="resources", help="Root folder containing resource files")
     parser.add_argument("--out", default="resources.json", help="resources.json file path")
-    parser.add_argument("--thumb-dir", default="resources/thumbs", help="Where to save thumbnails")
+    parser.add_argument("--thumb-dir", default="assets/thumbs", help="Where to save thumbnails (outside resources/)")
     parser.add_argument("--size", type=int, default=640, help="Thumbnail max width")
     parser.add_argument("--write", action="store_true", help="Write updated resources.json")
     args = parser.parse_args()

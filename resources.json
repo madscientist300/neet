@@ -84,6 +84,19 @@
     "thumbnail": "assets/thumbs/PLANT GROWTH AND DEVELOPMENT MIND MAP.png"
   },
   {
+    "id": "b4bec3f0",
+    "class": "11",
+    "chapter": "Plant Growth and Development",
+    "topic": "Plant Growth Regulators Hormones Comparison",
+    "type": "pdf",
+    "title": "Plant Growth Regulators Hormones Comparison",
+    "file": "resources/11/Plant Growth and Development/Plant Growth Regulators Hormones Comparison.pdf",
+    "tags": [
+      "growth",
+      "hormones"
+    ]
+  },
+  {
     "id": "7133295e",
     "class": "11",
     "chapter": "Respiration_in_Plants",

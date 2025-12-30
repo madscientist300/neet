@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>NEET Botany Resources</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -19,21 +21,132 @@
           <div class="subtitle">Organized by Class · Chapter · Topic · Tags</div>
         </div>
       </div>
-      <div class="meta-info">Offline friendly · Free</div>
+      <div class="header-actions">
+        <button id="uploadBtn" class="upload-btn" type="button">📤 Upload Resources</button>
+        <div class="meta-info">Offline friendly · Free</div>
+      </div>
     </header>
 
     <div class="controls">
-      <select id="classFilter" aria-label="Class filter"><option value="">All Classes</option></select>
-      <select id="chapterFilter" aria-label="Chapter filter"><option value="">All Chapters</option></select>
-      <select id="tagFilter" aria-label="Tag filter"><option value="">All Concepts/Tags</option></select>
-      <input id="searchBox" type="search" placeholder="Search by keyword, concept, filename..." aria-label="Search resources">
+      <select id="classFilter" aria-label="Class filter">
+        <option value="">All Classes</option>
+      </select>
+      <select id="chapterFilter" aria-label="Chapter filter">
+        <option value="">All Chapters</option>
+      </select>
+      <select id="tagFilter" aria-label="Tag filter">
+        <option value="">All Concepts/Tags</option>
+      </select>
+      <input id="searchBox" type="search" placeholder="Search by keyword, concept, filename..."
+        aria-label="Search resources">
       <button id="resetBtn" type="button">Reset</button>
     </div>
 
     <div id="grid" class="grid" aria-live="polite"></div>
     <div id="noresult" class="empty" style="display:none">No resources found. Try clearing filters.</div>
 
-    <footer>Tip: store thumbnails at <code>resources/thumbs/</code> (or let thumbnails be generated client-side).</footer>
+    <footer>Created with ❤️ by <strong>Sohan Kumar</strong></footer>
+  </div>
+
+  <!-- PIN Setup modal -->
+  <div id="pinSetupModal" class="modal pin-setup-modal" role="dialog" aria-modal="true" aria-hidden="true"
+    tabindex="-1">
+    <div class="upload-container">
+      <div class="upload-header">
+        <h2>🔒 Set Up Upload PIN</h2>
+      </div>
+
+      <div class="pin-setup-content">
+        <p>To protect your resources, please set a PIN for uploading files. You will need this PIN every time you
+          upload.</p>
+
+        <form id="pinSetupForm" class="upload-form">
+          <div class="form-group">
+            <label for="newPinInput">Choose your PIN <span class="required">*</span></label>
+            <input id="newPinInput" type="password" placeholder="Enter PIN (minimum 4 characters)" required
+              minlength="4" autocomplete="new-password">
+            <small>Remember this PIN - you'll need it for all uploads</small>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPinInput">Confirm PIN <span class="required">*</span></label>
+            <input id="confirmPinInput" type="password" placeholder="Re-enter your PIN" required minlength="4"
+              autocomplete="new-password">
+          </div>
+
+          <div id="pinSetupMessage" class="upload-message"></div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary btn-full">Set PIN</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upload modal -->
+  <div id="uploadModal" class="modal upload-modal" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+    <div class="upload-container">
+      <div class="upload-header">
+        <h2>📤 Upload Resources</h2>
+        <button id="closeUploadBtn" class="close-btn" type="button" aria-label="Close">&times;</button>
+      </div>
+
+      <form id="uploadForm" class="upload-form">
+        <div class="form-group">
+          <label for="classSelect">Class <span class="required">*</span></label>
+          <select id="classSelect" required>
+            <option value="">-- Select Class --</option>
+            <option value="11">Class 11</option>
+            <option value="12">Class 12</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="chapterInput">Chapter Name <span class="required">*</span></label>
+          <input id="chapterInput" type="text" placeholder="e.g., Anatomy_of_Flowering_Plants" required>
+          <small>Use underscores instead of spaces</small>
+        </div>
+
+        <div class="form-group">
+          <label for="tagsInput">Tags (optional)</label>
+          <input id="tagsInput" type="text" placeholder="e.g., anatomy, morphology, genetics">
+          <small>Separate multiple tags with commas</small>
+        </div>
+
+        <div class="form-group">
+          <label for="pinInput">Upload PIN <span class="required">*</span></label>
+          <input id="pinInput" type="password" placeholder="Enter your upload PIN" required autocomplete="off">
+          <small>Required to verify upload permission</small>
+        </div>
+
+        <div class="form-group">
+          <label for="fileInput">Files <span class="required">*</span></label>
+          <div class="file-input-wrapper">
+            <input id="fileInput" type="file" multiple accept=".pdf,image/*" required>
+            <div class="file-input-label">
+              <span class="file-icon">📁</span>
+              <span class="file-text">Choose files or drag here</span>
+            </div>
+          </div>
+          <small id="fileCount">No files selected</small>
+        </div>
+
+        <div id="uploadProgress" class="upload-progress" style="display:none;">
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <div class="progress-text">Uploading...</div>
+        </div>
+
+        <div id="uploadMessage" class="upload-message"></div>
+
+        <div class="form-actions">
+          <button type="button" id="cancelUploadBtn" class="btn-secondary">Cancel</button>
+          <button type="submit" id="submitUploadBtn" class="btn-primary">Upload</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <!-- modal viewer (same as before) -->
@@ -45,4 +158,5 @@
   <!-- App script -->
   <script src="app.js"></script>
 </body>
+
 </html>

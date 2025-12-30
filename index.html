@@ -2,9 +2,19 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>NEET Botany Resources</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Access comprehensive NEET Botany study materials, organized by class and chapter. Download PDFs for Class 11 and 12 botany topics including plant physiology, genetics, and more.">
+  <meta name="keywords"
+    content="NEET, Botany, Study Materials, Class 11, Class 12, Biology, Plant Science, PDF Downloads">
+
+  <!-- Performance: Preload critical resources -->
+  <link rel="preload" href="pdfs.json" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="app.js" as="script">
+
+  <title>NEET Botany Resources - Comprehensive Study Materials</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -28,15 +38,48 @@
     </header>
 
     <div class="controls">
-      <select id="classFilter" aria-label="Class filter">
-        <option value="">All Classes</option>
-      </select>
-      <select id="chapterFilter" aria-label="Chapter filter">
-        <option value="">All Chapters</option>
-      </select>
-      <select id="tagFilter" aria-label="Tag filter">
-        <option value="">All Concepts/Tags</option>
-      </select>
+      <!-- Custom Dropdown for Class Filter -->
+      <div class="custom-select" id="classFilterWrapper">
+        <div class="select-trigger" data-value="">
+          <span class="select-text">All Classes</span>
+          <svg class="select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 4L6 8L10 4" stroke="#7dd3fc" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="select-options">
+          <div class="select-option" data-value="">All Classes</div>
+        </div>
+      </div>
+
+      <!-- Custom Dropdown for Chapter Filter -->
+      <div class="custom-select" id="chapterFilterWrapper">
+        <div class="select-trigger" data-value="">
+          <span class="select-text">All Chapters</span>
+          <svg class="select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 4L6 8L10 4" stroke="#7dd3fc" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="select-options">
+          <div class="select-option" data-value="">All Chapters</div>
+        </div>
+      </div>
+
+      <!-- Custom Dropdown for Tag Filter -->
+      <div class="custom-select" id="tagFilterWrapper">
+        <div class="select-trigger" data-value="">
+          <span class="select-text">All Concepts/Tags</span>
+          <svg class="select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 4L6 8L10 4" stroke="#7dd3fc" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="select-options">
+          <div class="select-option" data-value="">All Concepts/Tags</div>
+        </div>
+      </div>
+
       <input id="searchBox" type="search" placeholder="Search by keyword, concept, filename..."
         aria-label="Search resources">
       <button id="resetBtn" type="button">Reset</button>

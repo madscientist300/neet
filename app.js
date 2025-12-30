@@ -1,14 +1,119 @@
 // app.js
 // Requires: pdf.js included in index.html
 (function () {
-  // Elements
-  const classFilter = document.getElementById('classFilter');
-  const chapterFilter = document.getElementById('chapterFilter');
-  const tagFilter = document.getElementById('tagFilter');
+  // Elements - Custom Dropdowns
+  const classFilterWrapper = document.getElementById('classFilterWrapper');
+  const chapterFilterWrapper = document.getElementById('chapterFilterWrapper');
+  const tagFilterWrapper = document.getElementById('tagFilterWrapper');
   const searchBox = document.getElementById('searchBox');
   const resetBtn = document.getElementById('resetBtn');
   const grid = document.getElementById('grid');
   const noresult = document.getElementById('noresult');
+
+  // Custom Dropdown State
+  const dropdownState = {
+    class: { value: '', text: 'All Classes' },
+    chapter: { value: '', text: 'All Chapters' },
+    tag: { value: '', text: 'All Concepts/Tags' }
+  };
+
+  // Initialize Custom Dropdowns
+  function initCustomDropdowns() {
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.custom-select')) {
+        closeAllDropdowns();
+      }
+    });
+
+    // Setup each dropdown
+    setupDropdown(classFilterWrapper, 'class', (value, text) => {
+      dropdownState.class = { value, text };
+      populateChapterOptions();
+      dropdownState.chapter = { value: '', text: 'All Chapters' };
+      updateDropdownDisplay(chapterFilterWrapper, dropdownState.chapter.text);
+      populateTagOptions();
+      dropdownState.tag = { value: '', text: 'All Concepts/Tags' };
+      updateDropdownDisplay(tagFilterWrapper, dropdownState.tag.text);
+      render();
+    });
+
+    setupDropdown(chapterFilterWrapper, 'chapter', (value, text) => {
+      dropdownState.chapter = { value, text };
+      populateTagOptions();
+      dropdownState.tag = { value: '', text: 'All Concepts/Tags' };
+      updateDropdownDisplay(tagFilterWrapper, dropdownState.tag.text);
+      render();
+    });
+
+    setupDropdown(tagFilterWrapper, 'tag', (value, text) => {
+      dropdownState.tag = { value, text };
+      render();
+    });
+  }
+
+  function setupDropdown(wrapper, filterType, onChange) {
+    const trigger = wrapper.querySelector('.select-trigger');
+    const options = wrapper.querySelector('.select-options');
+
+    // Toggle dropdown on trigger click
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = wrapper.classList.contains('open');
+      closeAllDropdowns();
+      if (!isOpen) {
+        wrapper.classList.add('open');
+      }
+    });
+
+    options.addEventListener('click', (e) => {
+      const option = e.target.closest('.select-option');
+      if (option) {
+        const value = option.dataset.value;
+        const text = option.textContent;
+
+        // Update selected state
+        options.querySelectorAll('.select-option').forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+
+        // Update trigger text
+        updateDropdownDisplay(wrapper, text);
+
+        // Close dropdown
+        wrapper.classList.remove('open');
+
+        // Trigger change callback
+        if (onChange) onChange(value, text);
+      }
+    });
+  }
+
+  function updateDropdownDisplay(wrapper, text) {
+    const textEl = wrapper.querySelector('.select-text');
+    textEl.textContent = text;
+  }
+
+  function closeAllDropdowns() {
+    document.querySelectorAll('.custom-select').forEach(dropdown => {
+      dropdown.classList.remove('open');
+    });
+  }
+
+  function populateDropdownOptions(wrapper, options, selectedValue = '') {
+    const optionsContainer = wrapper.querySelector('.select-options');
+    optionsContainer.innerHTML = '';
+
+    options.forEach(({ value, text }) => {
+      const option = document.createElement('div');
+      option.className = 'select-option';
+      option.dataset.value = value;
+      option.textContent = text;
+      if (value === selectedValue) {
+        option.classList.add('selected');
+      }
+      optionsContainer.appendChild(option);
+    });
+  }
 
   // pdf.js worker
   const pdfjsLib = window['pdfjs-dist/build/pdf'];
@@ -60,8 +165,8 @@
 
   // dynamic filters (same approach)
   function getFilteredResourcesForFilters() {
-    const cls = (classFilter.value || '').toString().trim().toLowerCase();
-    const chap = (chapterFilter.value || '').toString().trim().toLowerCase();
+    const cls = dropdownState.class.value.toString().trim().toLowerCase();
+    const chap = dropdownState.chapter.value.toString().trim().toLowerCase();
     return resources.filter(r => {
       if (cls && (r._classNorm || '') !== cls) return false;
       if (chap && (r._chapterNorm || '') !== chap) return false;
@@ -70,32 +175,41 @@
   }
 
   function populateChapterOptions() {
-    const cls = (classFilter.value || '').toString().trim().toLowerCase();
+    const cls = dropdownState.class.value.toString().trim().toLowerCase();
     const filtered = resources.filter(r => !cls || (r._classNorm === cls));
     const chapters = unique(filtered.map(r => r.chapter || 'Unknown')).sort((a, b) => a.localeCompare(b));
-    chapterFilter.innerHTML = '';
-    chapterFilter.appendChild(new Option('All Chapters', ''));
-    for (const ch of chapters) chapterFilter.appendChild(new Option(ch, ch));
+
+    const options = [{ value: '', text: 'All Chapters' }];
+    chapters.forEach(ch => options.push({ value: ch, text: ch }));
+
+    populateDropdownOptions(chapterFilterWrapper, options, dropdownState.chapter.value);
   }
 
   function populateTagOptions() {
     const filtered = getFilteredResourcesForFilters();
     const tags = unique(filtered.flatMap(r => r.tags || [])).sort((a, b) => a.localeCompare(b));
-    tagFilter.innerHTML = ''; tagFilter.appendChild(new Option('All Concepts/Tags', ''));
-    for (const t of tags) tagFilter.appendChild(new Option(t, t));
+
+    const options = [{ value: '', text: 'All Concepts/Tags' }];
+    tags.forEach(t => options.push({ value: t, text: t }));
+
+    populateDropdownOptions(tagFilterWrapper, options, dropdownState.tag.value);
   }
 
   function buildFilters() {
     const classes = unique(resources.map(r => r.class || 'Unclassed')).sort((a, b) => a.localeCompare(b));
-    classFilter.innerHTML = ''; classFilter.appendChild(new Option('All Classes', ''));
-    for (const c of classes) classFilter.appendChild(new Option(c, c));
-    populateChapterOptions(); populateTagOptions();
+
+    const classOptions = [{ value: '', text: 'All Classes' }];
+    classes.forEach(c => classOptions.push({ value: c, text: c }));
+
+    populateDropdownOptions(classFilterWrapper, classOptions, '');
+    populateChapterOptions();
+    populateTagOptions();
   }
 
   function render() {
-    const classVal = (classFilter.value || '').toString().toLowerCase().trim();
-    const chapVal = (chapterFilter.value || '').toString().toLowerCase().trim();
-    const tagVal = (tagFilter.value || '').toString().toLowerCase().trim();
+    const classVal = dropdownState.class.value.toString().toLowerCase().trim();
+    const chapVal = dropdownState.chapter.value.toString().toLowerCase().trim();
+    const tagVal = dropdownState.tag.value.toString().toLowerCase().trim();
     const q = (searchBox.value || '').trim().toLowerCase();
 
     const filtered = resources.filter(r => {
@@ -118,6 +232,8 @@
       observer.observe(card);
     });
   }
+
+
 
   // determine type label and class for badge
   function badgeForResource(res) {
@@ -348,20 +464,34 @@
     window.open(res.file, '_blank');
   }
 
-  // wire events and init
-  classFilter.addEventListener('change', () => {
-    populateChapterOptions();
-    chapterFilter.value = '';
-    populateTagOptions();
-    tagFilter.value = '';
-    render();
-  });
-  chapterFilter.addEventListener('change', () => { populateTagOptions(); tagFilter.value = ''; render(); });
-  tagFilter.addEventListener('change', render);
-  searchBox.addEventListener('input', debounce(() => render(), 220));
+  // Event Listeners - Debounced search for better performance (300ms delay)
+  const debouncedSearch = debounce(() => render(), 300);
+  searchBox.addEventListener('input', debouncedSearch);
+
+  // Assuming loadMoreBtn exists and its functionality is desired
+  // If not, this block should be removed or adapted.
+  // loadMoreBtn.addEventListener('click', () => {
+  //   currentPage++;
+  //   renderPDFs(true);
+  // });
+
+  // The original resetBtn logic is more complex than just calling resetFilters.
+  // I will integrate the new debounced search and keep the original reset logic.
+  // If a 'resetFilters' function is intended to encapsulate the reset logic,
+  // that function should be defined elsewhere.
   resetBtn.addEventListener('click', () => {
-    classFilter.value = ''; chapterFilter.value = ''; tagFilter.value = ''; searchBox.value = '';
-    populateChapterOptions(); populateTagOptions(); render();
+    dropdownState.class = { value: '', text: 'All Classes' };
+    dropdownState.chapter = { value: '', text: 'All Chapters' };
+    dropdownState.tag = { value: '', text: 'All Concepts/Tags' };
+    searchBox.value = '';
+
+    updateDropdownDisplay(classFilterWrapper, 'All Classes');
+    updateDropdownDisplay(chapterFilterWrapper, 'All Chapters');
+    updateDropdownDisplay(tagFilterWrapper, 'All Concepts/Tags');
+
+    populateChapterOptions();
+    populateTagOptions();
+    render();
   });
 
   // ========== PIN SETUP FUNCTIONALITY ==========
@@ -415,7 +545,7 @@
       const result = await response.json();
 
       if (result.success) {
-        pinSetupMessage.innerHTML = `<span style="color:#10b981">${result.message}</span>`;
+        pinSetupMessage.innerHTML = `<span style="color:#10b981">✅ ${result.message}</span>`;
 
         // Close modal after 1.5 seconds
         setTimeout(() => {
@@ -559,6 +689,7 @@
   });
 
   // start
+  initCustomDropdowns();
   loadResources();
   checkPINStatus(); // Check if PIN needs to be set up
 })();

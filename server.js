@@ -211,6 +211,82 @@ app.post('/api/upload', upload.array('files'), validatePIN, async (req, res) => 
   }
 });
 
+// Delete endpoint with PIN protection
+app.post('/api/delete', validatePIN, async (req, res) => {
+  try {
+    const { resourceId, file } = req.body;
+
+    if (!resourceId || !file) {
+      return res.status(400).json({
+        success: false,
+        message: 'Missing required fields: resourceId or file'
+      });
+    }
+
+    // Read current resources.json
+    const resourcesPath = path.join(__dirname, 'resources.json');
+    let resources = [];
+
+    try {
+      const data = await fs.readFile(resourcesPath, 'utf8');
+      resources = JSON.parse(data);
+    } catch (error) {
+      return res.status(404).json({
+        success: false,
+        message: 'Resources file not found'
+      });
+    }
+
+    // Find the resource to delete
+    const resourceIndex = resources.findIndex(r => r.id === resourceId);
+
+    if (resourceIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: 'Resource not found'
+      });
+    }
+
+    const resourceToDelete = resources[resourceIndex];
+
+    // Delete the file from filesystem
+    const filePath = path.join(__dirname, file);
+    try {
+      await fs.unlink(filePath);
+      console.log(`Deleted file: ${filePath}`);
+    } catch (error) {
+      console.warn(`Could not delete file ${filePath}:`, error.message);
+      // Continue anyway - the file might already be deleted
+    }
+
+    // Remove from resources array
+    resources.splice(resourceIndex, 1);
+
+    // Backup existing resources.json
+    try {
+      await fs.copyFile(resourcesPath, resourcesPath + '.backup');
+    } catch (error) {
+      console.log('Could not create backup:', error.message);
+    }
+
+    // Write updated resources.json
+    await fs.writeFile(resourcesPath, JSON.stringify(resources, null, 2), 'utf8');
+
+    res.json({
+      success: true,
+      message: 'Resource deleted successfully',
+      deletedResource: resourceToDelete
+    });
+
+  } catch (error) {
+    console.error('Delete error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Delete failed: ' + error.message
+    });
+  }
+});
+
 // Get chapters for a specific class
 app.get('/api/chapters/:class', async (req, res) => {
   try {

@@ -292,6 +292,7 @@
     if (r.type === 'url') { const a = document.createElement('a'); a.className = 'action'; a.href = r.file; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Open Link'; actions.appendChild(a); }
     const pbtn = document.createElement('button'); pbtn.className = 'action'; pbtn.type = 'button'; pbtn.textContent = 'Preview'; pbtn.addEventListener('click', () => openPreviewByResource(r)); actions.appendChild(pbtn);
     const obtn = document.createElement('button'); obtn.className = 'action'; obtn.type = 'button'; obtn.textContent = 'Open file'; obtn.addEventListener('click', () => openResource(r.file)); actions.appendChild(obtn);
+    const dbtn = document.createElement('button'); dbtn.className = 'action action-delete'; dbtn.type = 'button'; dbtn.textContent = '♻️'; dbtn.setAttribute('aria-label', 'Delete'); dbtn.addEventListener('click', () => openDeleteModal(r)); actions.appendChild(dbtn);
 
     body.appendChild(actions);
     card.appendChild(body);
@@ -678,13 +679,101 @@
           closeUploadModal();
         }, 1500);
       } else {
-        uploadMessage.innerHTML = `<span style="color:#ef4444">❌ ${result.message}</span>`;
+        uploadMessage.innerHTML = `<span style="color:#ef4444">${result.message}</span>`;
       }
 
     } catch (error) {
       uploadProgress.style.display = 'none';
       uploadMessage.innerHTML = `<span style="color:#ef4444">❌ Upload failed: ${error.message}</span>`;
       console.error('Upload error:', error);
+    }
+  });
+
+  // ========== DELETE FUNCTIONALITY ==========
+  const deleteModal = document.getElementById('deleteModal');
+  const deleteForm = document.getElementById('deleteForm');
+  const closeDeleteBtn = document.getElementById('closeDeleteBtn');
+  const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+  const deletePinInput = document.getElementById('deletePinInput');
+  const deleteMessage = document.getElementById('deleteMessage');
+  const deleteResourceInfo = document.getElementById('deleteResourceInfo');
+  let currentResourceToDelete = null;
+
+  // Open delete modal with resource info
+  function openDeleteModal(resource) {
+    currentResourceToDelete = resource;
+    deleteResourceInfo.innerHTML = `
+      <strong>${resource.title || resource.file || 'Untitled'}</strong>
+      <div style="margin-top: 4px;">Class: ${resource.class || '-'} · Chapter: ${resource.chapter || '-'}</div>
+    `;
+    deleteModal.classList.add('active');
+    deleteModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close delete modal
+  function closeDeleteModal() {
+    deleteModal.classList.remove('active');
+    deleteModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    deleteForm.reset();
+    deleteMessage.innerHTML = '';
+    currentResourceToDelete = null;
+  }
+
+  closeDeleteBtn.addEventListener('click', closeDeleteModal);
+  cancelDeleteBtn.addEventListener('click', closeDeleteModal);
+
+  // Click outside modal to close
+  deleteModal.addEventListener('click', (e) => {
+    if (e.target === deleteModal) closeDeleteModal();
+  });
+
+  // Handle delete form submission
+  deleteForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!currentResourceToDelete) {
+      deleteMessage.innerHTML = '<span style="color:#ef4444">❌ No resource selected</span>';
+      return;
+    }
+
+    const pin = deletePinInput.value.trim();
+
+    if (!pin) {
+      deleteMessage.innerHTML = '<span style="color:#ef4444">❌ Please enter your PIN</span>';
+      return;
+    }
+
+    deleteMessage.innerHTML = '<span style="color:#7dd3fc">⏳ Deleting...</span>';
+
+    try {
+      const response = await fetch('/api/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          pin: pin,
+          resourceId: currentResourceToDelete.id,
+          file: currentResourceToDelete.file
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        deleteMessage.innerHTML = '<span style="color:#10b981">✅ Resource deleted successfully</span>';
+
+        // Reload resources after 1 second
+        setTimeout(async () => {
+          await loadResources();
+          closeDeleteModal();
+        }, 1000);
+      } else {
+        deleteMessage.innerHTML = `<span style="color:#ef4444">${result.message}</span>`;
+      }
+    } catch (error) {
+      deleteMessage.innerHTML = `<span style="color:#ef4444">❌ Delete failed: ${error.message}</span>`;
+      console.error('Delete error:', error);
     }
   });
 

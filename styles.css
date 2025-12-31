@@ -899,6 +899,55 @@ footer {
   width: 100%
 }
 
+/* Delete Button Styles */
+.action-delete {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+  font-size: 16px;
+  padding: 8px 12px;
+}
+
+.action-delete:hover {
+  background: linear-gradient(90deg, #ef4444, #dc2626) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+.btn-danger {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 0;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .2s;
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+  color: #fff;
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.4);
+}
+
+/* Delete Resource Info */
+.delete-resource-info {
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.delete-resource-info strong {
+  color: #e6eef6;
+  display: block;
+  margin-bottom: 4px;
+}
+
 @media(max-width:560px) {
   header {
     flex-direction: column;

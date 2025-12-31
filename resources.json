@@ -110,21 +110,6 @@
     "thumbnail": "assets/thumbs/Glycolysis.png"
   },
   {
-    "id": "08fa13f7",
-    "class": "11",
-    "chapter": "The_Living_World",
-    "topic": "notes",
-    "type": "pdf",
-    "title": "notes",
-    "file": "resources/11/The_Living_World/notes.pdf",
-    "tags": [
-      "introduction",
-      "living_world",
-      "notes"
-    ],
-    "thumbnail": "assets/thumbs/notes.png"
-  },
-  {
     "id": "35414c34",
     "class": "12",
     "chapter": "Microbes_in_Human_Welfare",

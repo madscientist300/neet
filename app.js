@@ -292,7 +292,10 @@
     if (r.type === 'url') { const a = document.createElement('a'); a.className = 'action'; a.href = r.file; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Open Link'; actions.appendChild(a); }
     const pbtn = document.createElement('button'); pbtn.className = 'action'; pbtn.type = 'button'; pbtn.textContent = 'Preview'; pbtn.addEventListener('click', () => openPreviewByResource(r)); actions.appendChild(pbtn);
     const obtn = document.createElement('button'); obtn.className = 'action'; obtn.type = 'button'; obtn.textContent = 'Open file'; obtn.addEventListener('click', () => openResource(r.file)); actions.appendChild(obtn);
-    const dbtn = document.createElement('button'); dbtn.className = 'action action-delete'; dbtn.type = 'button'; dbtn.textContent = '♻️'; dbtn.setAttribute('aria-label', 'Delete'); dbtn.addEventListener('click', () => openDeleteModal(r)); actions.appendChild(dbtn);
+
+    if (backendAvailable) {
+      const dbtn = document.createElement('button'); dbtn.className = 'action action-delete'; dbtn.type = 'button'; dbtn.textContent = '♻️'; dbtn.setAttribute('aria-label', 'Delete'); dbtn.addEventListener('click', () => openDeleteModal(r)); actions.appendChild(dbtn);
+    }
 
     body.appendChild(actions);
     card.appendChild(body);
@@ -504,6 +507,10 @@
 
   // Check PIN status on load
   // Check PIN status on load
+  // Backend Status Flag
+  let backendAvailable = false;
+
+  // Check PIN status on load
   async function checkPINStatus() {
     try {
       const response = await fetch('/api/pin-status');
@@ -516,6 +523,12 @@
 
       const data = await response.json();
 
+      // Backend is available!
+      backendAvailable = true;
+      if (uploadBtn) uploadBtn.style.display = 'inline-block';
+      // Re-render to show delete buttons
+      render();
+
       if (!data.setupComplete) {
         // Show PIN setup modal
         pinSetupModal.classList.add('active');
@@ -524,7 +537,7 @@
       }
     } catch (error) {
       console.log('Running in static mode (Backend not available). Upload/Delete features disabled.');
-      // Hide upload button and delete buttons if backend is not reachable (GitHub Pages)
+      // Ensure hidden
       if (uploadBtn) uploadBtn.style.display = 'none';
 
       // Hide delete buttons dynamically

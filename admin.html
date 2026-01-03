@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - NEET Botany Resources</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="brand">
+                <svg width="42" height="42" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect rx="6" width="24" height="24" fill="#ef4444"></rect>
+                    <path d="M12 7v10M8 12h8" stroke="#fee2e2" stroke-width="2" stroke-linecap="round"></path>
+                </svg>
+                <div>
+                    <h1>Admin Dashboard</h1>
+                    <div class="subtitle">Manage Resources & Content</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="index.html" class="btn-secondary" style="text-decoration: none; margin-right: 10px;">Back to
+                    Home</a>
+                <button id="uploadBtn" class="upload-btn" type="button">📤 Upload Resources</button>
+            </div>
+        </header>
+
+        <div class="controls">
+            <!-- Custom Dropdown for Class Filter -->
+            <div class="custom-select" id="classFilterWrapper">
+                <div class="select-trigger" data-value="">
+                    <span class="select-text">All Classes</span>
+                    <svg class="select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M2 4L6 8L10 4" stroke="#7dd3fc" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="select-options">
+                    <div class="select-option" data-value="">All Classes</div>
+                </div>
+            </div>
+
+            <!-- Custom Dropdown for Chapter Filter -->
+            <div class="custom-select" id="chapterFilterWrapper">
+                <div class="select-trigger" data-value="">
+                    <span class="select-text">All Chapters</span>
+                    <svg class="select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M2 4L6 8L10 4" stroke="#7dd3fc" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="select-options">
+                    <div class="select-option" data-value="">All Chapters</div>
+                </div>
+            </div>
+
+            <input id="searchBox" type="search" placeholder="Search to edit/delete..." aria-label="Search resources">
+            <button id="resetBtn" type="button">Reset</button>
+        </div>
+
+        <div id="grid" class="grid" aria-live="polite"></div>
+        <div id="noresult" class="empty" style="display:none">No resources found.</div>
+
+        <footer>Admin Panel</footer>
+    </div>
+
+    <!-- Login / Setup Modal -->
+    <div id="authModal" class="modal pin-setup-modal active" role="dialog" aria-modal="true" aria-hidden="false"
+        tabindex="-1">
+        <div class="upload-container">
+            <div class="upload-header">
+                <h2 id="authTitle">🔒 Admin Login</h2>
+            </div>
+
+            <div class="pin-setup-content">
+                <form id="authForm" class="upload-form">
+                    <div class="form-group">
+                        <label for="authEmail">Email</label>
+                        <input id="authEmail" type="email" placeholder="admin@example.com" required
+                            autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="authPassword">Password</label>
+                        <input id="authPassword" type="password" placeholder="Password" required
+                            autocomplete="current-password">
+                    </div>
+
+                    <div id="authMessage" class="upload-message"></div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="authSubmitBtn" class="btn-primary btn-full">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload modal -->
+    <div id="uploadModal" class="modal upload-modal" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+        <div class="upload-container">
+            <div class="upload-header">
+                <h2>📤 Upload Resources</h2>
+                <button id="closeUploadBtn" class="close-btn" type="button" aria-label="Close">&times;</button>
+            </div>
+
+            <form id="uploadForm" class="upload-form">
+                <div class="form-group">
+                    <label for="classSelect">Class <span class="required">*</span></label>
+                    <select id="classSelect" required>
+                        <option value="">-- Select Class --</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="chapterInput">Chapter Name <span class="required">*</span></label>
+                    <select id="chapterInput"
+                        style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--text); font-size: 0.95rem;"
+                        required>
+                        <option value="">-- Select Class First --</option>
+                    </select>
+                    <small>Select from the list</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="tagsInput">Tags (optional)</label>
+                    <input id="tagsInput" type="text" placeholder="e.g., anatomy, morphology, genetics">
+                    <small>Separate multiple tags with commas</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="fileInput">Files <span class="required">*</span></label>
+                    <div class="file-input-wrapper">
+                        <input id="fileInput" type="file" multiple accept=".pdf,image/*" required>
+                        <div class="file-input-label">
+                            <span class="file-icon">📁</span>
+                            <span class="file-text">Choose files or drag here</span>
+                        </div>
+                    </div>
+                    <small id="fileCount">No files selected</small>
+                </div>
+
+                <div id="uploadProgress" class="upload-progress" style="display:none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="progress-text">Uploading...</div>
+                </div>
+
+                <div id="uploadMessage" class="upload-message"></div>
+
+                <div class="form-actions">
+                    <button type="button" id="cancelUploadBtn" class="btn-secondary">Cancel</button>
+                    <button type="submit" id="submitUploadBtn" class="btn-primary">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal delete-modal" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+        <div class="upload-container">
+            <div class="upload-header">
+                <h2>🗑️ Delete Resource</h2>
+                <button id="closeDeleteBtn" class="close-btn" type="button" aria-label="Close">&times;</button>
+            </div>
+
+            <div class="pin-setup-content">
+                <p>Are you sure you want to delete this resource?</p>
+                <div id="deleteResourceInfo" class="delete-resource-info"></div>
+                <div id="deleteMessage" class="upload-message"></div>
+                <div class="form-actions">
+                    <button type="button" id="cancelDeleteBtn" class="btn-secondary">Cancel</button>
+                    <button type="button" id="confirmDeleteBtn" class="btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF.js -->
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3/build/pdf.min.js"></script>
+    <!-- Admin Script -->
+    <script src="admin.js"></script>
+</body>
+
+</html>

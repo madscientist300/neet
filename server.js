@@ -21,7 +21,8 @@ async function loadConfig() {
   } catch (error) {
     // Create default config if not exists
     const defaultConfig = {
-      pinHash: null,
+      adminEmail: null,
+      adminPasswordHash: null,
       setupComplete: false
     };
     await saveConfig(defaultConfig);
@@ -35,12 +36,14 @@ async function saveConfig(config) {
 
 // Initialize config on startup
 let config = null;
+const sessions = new Map(); // token -> email
+
 (async () => {
   config = await loadConfig();
   if (!config.setupComplete) {
-    console.log('⚠️  PIN not configured. Please set up PIN at http://localhost:3000');
+    console.log('⚠️  Admin not configured. Please set up at http://localhost:3000/admin.html');
   } else {
-    console.log('🔒 PIN protection enabled');
+    console.log('🔒 Admin authentication enabled');
   }
 })();
 
@@ -51,14 +54,28 @@ app.use(express.json());
 // Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: async (req, file, cb) => {
+    // Debug logging
+    console.log('Multer Destination Called');
+    console.log('Request Body:', req.body);
+    console.log('File:', file.originalname);
+
     const classNum = req.body.class;
-    const chapter = req.body.chapter; // Allow spaces
+    const chapter = req.body.chapter;
+
+    if (!classNum || !chapter) {
+      console.error('Missing class or chapter in body during upload');
+      return cb(new Error('Missing class or chapter information. ensure fields are sent before files.'));
+    }
+
+    // Allow spaces in folder names
     const uploadPath = path.join(__dirname, 'resources', classNum, chapter);
+    console.log('Upload Path:', uploadPath);
 
     try {
       await fs.mkdir(uploadPath, { recursive: true });
       cb(null, uploadPath);
     } catch (error) {
+      console.error('Mkdir failed:', error);
       cb(error);
     }
   },
@@ -106,41 +123,31 @@ function getFileType(mimetype) {
   return 'file';
 }
 
-// PIN validation middleware
-async function validatePIN(req, res, next) {
-  const { pin } = req.body;
+// Auth validation middleware
+async function validateAuth(req, res, next) {
+  const authHeader = req.headers.authorization;
 
-  // Reload config to get latest PIN
-  const currentConfig = await loadConfig();
-
-  if (!currentConfig.setupComplete || !currentConfig.pinHash) {
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({
       success: false,
-      message: 'PIN not configured. Please set up PIN first.'
+      message: 'Unauthorized: No token provided'
     });
   }
 
-  if (!pin) {
+  const token = authHeader.split(' ')[1];
+
+  if (!sessions.has(token)) {
     return res.status(401).json({
       success: false,
-      message: 'PIN is required'
-    });
-  }
-
-  const isValid = await bcrypt.compare(pin, currentConfig.pinHash);
-
-  if (!isValid) {
-    return res.status(401).json({
-      success: false,
-      message: '❌ Incorrect PIN. Please try again.'
+      message: 'Unauthorized: Invalid or expired token'
     });
   }
 
   next();
 }
 
-// Upload endpoint with PIN protection
-app.post('/api/upload', upload.array('files'), validatePIN, async (req, res) => {
+// Upload endpoint with Auth protection
+app.post('/api/upload', upload.array('files'), validateAuth, async (req, res) => {
   try {
     const { class: classNum, chapter, tags } = req.body;
     const files = req.files;
@@ -211,8 +218,8 @@ app.post('/api/upload', upload.array('files'), validatePIN, async (req, res) => 
   }
 });
 
-// Delete endpoint with PIN protection
-app.post('/api/delete', validatePIN, async (req, res) => {
+// Delete endpoint with Auth protection
+app.post('/api/delete', validateAuth, async (req, res) => {
   try {
     const { resourceId, file } = req.body;
 
@@ -308,105 +315,96 @@ app.get('/api/chapters/:class', async (req, res) => {
   }
 });
 
-// Check if PIN is configured
-app.get('/api/pin-status', async (req, res) => {
+// Check admin status
+app.get('/api/admin-status', async (req, res) => {
   const currentConfig = await loadConfig();
+  // Only consider setup complete if adminEmail exists
+  const isSetup = currentConfig.setupComplete && currentConfig.adminEmail;
   res.json({
-    setupComplete: currentConfig.setupComplete || false
+    setupComplete: !!isSetup
   });
 });
 
-// Set up PIN (only works if not already set)
-app.post('/api/setup-pin', async (req, res) => {
+// Admin Setup
+app.post('/api/setup-admin', async (req, res) => {
   try {
-    const { pin } = req.body;
+    const { email, password } = req.body;
 
-    if (!pin || pin.length < 4) {
+    if (!email || !password || password.length < 6) {
       return res.status(400).json({
         success: false,
-        message: 'PIN must be at least 4 characters'
+        message: 'Email and Password (min 6 chars) required'
       });
     }
 
     const currentConfig = await loadConfig();
 
-    if (currentConfig.setupComplete) {
+    // Allow setup if adminEmail is missing (even if setupComplete was true from old PIN system)
+    if (currentConfig.setupComplete && currentConfig.adminEmail) {
       return res.status(400).json({
         success: false,
-        message: 'PIN already configured. Use change-pin endpoint to update.'
+        message: 'Admin already configured.'
       });
     }
 
-    const pinHash = await bcrypt.hash(pin, SALT_ROUNDS);
-    currentConfig.pinHash = pinHash;
+    const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
+    currentConfig.adminEmail = email;
+    currentConfig.adminPasswordHash = passwordHash;
     currentConfig.setupComplete = true;
 
     await saveConfig(currentConfig);
-    config = currentConfig; // Update in-memory config
+    config = currentConfig;
 
     res.json({
       success: true,
-      message: '✅ PIN configured successfully!'
+      message: '✅ Admin configured successfully! Please login.'
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Failed to set PIN: ' + error.message
+      message: 'Setup failed: ' + error.message
     });
   }
 });
 
-// Change PIN (requires old PIN)
-app.post('/api/change-pin', async (req, res) => {
+// Admin Login
+app.post('/api/login', async (req, res) => {
   try {
-    const { oldPin, newPin } = req.body;
-
-    if (!oldPin || !newPin) {
-      return res.status(400).json({
-        success: false,
-        message: 'Both old and new PIN are required'
-      });
-    }
-
-    if (newPin.length < 4) {
-      return res.status(400).json({
-        success: false,
-        message: 'New PIN must be at least 4 characters'
-      });
-    }
+    const { email, password } = req.body;
 
     const currentConfig = await loadConfig();
 
-    if (!currentConfig.setupComplete || !currentConfig.pinHash) {
+    if (!currentConfig.setupComplete) {
       return res.status(400).json({
         success: false,
-        message: 'No PIN configured. Please set up PIN first.'
+        message: 'Admin not configured.'
       });
     }
 
-    const isValid = await bcrypt.compare(oldPin, currentConfig.pinHash);
+    if (email !== currentConfig.adminEmail) {
+      return res.status(401).json({ success: false, message: 'Invalid credentials' });
+    }
+
+    const isValid = await bcrypt.compare(password, currentConfig.adminPasswordHash);
 
     if (!isValid) {
-      return res.status(401).json({
-        success: false,
-        message: '❌ Incorrect old PIN'
-      });
+      return res.status(401).json({ success: false, message: 'Invalid credentials' });
     }
 
-    const newPinHash = await bcrypt.hash(newPin, SALT_ROUNDS);
-    currentConfig.pinHash = newPinHash;
-
-    await saveConfig(currentConfig);
-    config = currentConfig; // Update in-memory config
+    // Generate token
+    const token = crypto.randomBytes(32).toString('hex');
+    sessions.set(token, email);
 
     res.json({
       success: true,
-      message: '✅ PIN changed successfully!'
+      token: token,
+      message: 'Login successful'
     });
+
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Failed to change PIN: ' + error.message
+      message: 'Login failed: ' + error.message
     });
   }
 });

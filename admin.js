@@ -38,6 +38,13 @@
     async function checkAuthStep() {
         try {
             const res = await fetch(API_STATUS);
+
+            // Check if response is valid JSON (backend is running)
+            const contentType = res.headers.get('content-type');
+            if (!res.ok || !contentType || !contentType.includes('application/json')) {
+                throw new Error('Static Mode Detected');
+            }
+
             const status = await res.json();
 
             if (!status.setupComplete) {
@@ -52,8 +59,33 @@
             }
         } catch (e) {
             console.error('Failed to check status', e);
-            authMessage.textContent = 'Failed to connect to server.';
+            if (e.message === 'Static Mode Detected' || e.name === 'SyntaxError') {
+                showStaticModeError();
+            } else {
+                authMessage.textContent = 'Failed to connect to server.';
+            }
         }
+    }
+
+    function showStaticModeError() {
+        authTitle.textContent = '⚠️ Admin Unavailable';
+        authMessage.innerHTML = `
+      <div style="text-align: left; background: #fff4f4; padding: 10px; border-radius: 6px; border: 1px solid #fee2e2;">
+        <p style="margin-bottom: 8px; color: #b91c1c;"><strong>GitHub Pages is a Static Host.</strong></p>
+        <p style="font-size: 0.9em; line-height: 1.4; color: #334155;">
+          The Admin Dashboard requires a backend server to run. It will <strong>only work on Localhost</strong>.
+        </p>
+        <hr style="margin: 10px 0; border: 0; border-top: 1px solid #fee2e2;">
+        <p style="font-size: 0.9em; font-weight: 500;">To Manage Content:</p>
+        <ol style="font-size: 0.9em; padding-left: 20px; color: #0f172a; margin-top: 4px;">
+          <li>Run <code>node server.js</code> locally</li>
+          <li>Go to <a href="http://localhost:3000/admin.html">localhost:3000/admin.html</a></li>
+          <li>Upload/Delete files</li>
+          <li>Push changes to GitHub</li>
+        </ol>
+      </div>
+    `;
+        authForm.style.display = 'none'; // Hide the login form
     }
 
     function showSetupMode() {

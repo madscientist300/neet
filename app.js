@@ -579,6 +579,48 @@
   const uploadProgress = document.getElementById('uploadProgress');
   const uploadMessage = document.getElementById('uploadMessage');
 
+  // Master list of chapters
+  const BOTANY_CHAPTERS = {
+    "11": [
+      "The Living World",
+      "Biological Classification",
+      "Plant Kingdom",
+      "Morphology of Flowering Plants",
+      "Anatomy of Flowering Plants",
+      "Cell The unit of Life",
+      "Cell Cycle and Cell Division",
+      "Photosynthesis in Higher Plants",
+      "Respiration in Plants",
+      "Plant Growth and Development"
+    ],
+    "12": [
+      "Sexual Reproduction in Flowering Plants",
+      "Principle of Inheritance and Variation",
+      "Molecular Basis of Inheritance",
+      "Microbes in Human Welfare",
+      "Organisms and Populations",
+      "Ecosystem",
+      "Biodiversity and Conservation"
+    ]
+  };
+
+  // Populate chapters when class changes
+  classSelect.addEventListener('change', () => {
+    const cls = classSelect.value;
+    chapterInput.innerHTML = '<option value="">-- Select Chapter --</option>';
+
+    if (cls && BOTANY_CHAPTERS[cls]) {
+      BOTANY_CHAPTERS[cls].forEach(ch => {
+        const opt = document.createElement('option');
+        opt.value = ch;
+        opt.textContent = ch;
+        chapterInput.appendChild(opt);
+      });
+    } else {
+      chapterInput.innerHTML = '<option value="">-- Select Class First --</option>';
+    }
+  });
+
   // Show upload modal
   uploadBtn.addEventListener('click', () => {
     uploadModal.classList.add('active');

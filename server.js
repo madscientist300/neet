@@ -52,7 +52,7 @@ app.use(express.json());
 const storage = multer.diskStorage({
   destination: async (req, file, cb) => {
     const classNum = req.body.class;
-    const chapter = req.body.chapter.replace(/\s+/g, '_'); // Replace spaces with underscores
+    const chapter = req.body.chapter; // Allow spaces
     const uploadPath = path.join(__dirname, 'resources', classNum, chapter);
 
     try {
@@ -174,7 +174,7 @@ app.post('/api/upload', upload.array('files'), validatePIN, async (req, res) => 
       return {
         id: generateId(),
         class: classNum,
-        chapter: chapter.replace(/\s+/g, '_'),
+        chapter: chapter,
         topic: fileName,
         type: getFileType(file.mimetype),
         title: fileName,

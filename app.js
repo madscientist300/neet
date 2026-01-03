@@ -503,9 +503,17 @@
   const pinSetupMessage = document.getElementById('pinSetupMessage');
 
   // Check PIN status on load
+  // Check PIN status on load
   async function checkPINStatus() {
     try {
       const response = await fetch('/api/pin-status');
+
+      // Check if response is valid JSON (backend is running)
+      const contentType = response.headers.get('content-type');
+      if (!response.ok || !contentType || !contentType.includes('application/json')) {
+        throw new Error('Backend not available');
+      }
+
       const data = await response.json();
 
       if (!data.setupComplete) {
@@ -515,7 +523,14 @@
         document.body.style.overflow = 'hidden';
       }
     } catch (error) {
-      console.error('Failed to check PIN status:', error);
+      console.log('Running in static mode (Backend not available). Upload/Delete features disabled.');
+      // Hide upload button and delete buttons if backend is not reachable (GitHub Pages)
+      if (uploadBtn) uploadBtn.style.display = 'none';
+
+      // Hide delete buttons dynamically
+      const style = document.createElement('style');
+      style.textContent = '.action-delete { display: none !important; }';
+      document.head.appendChild(style);
     }
   }
 

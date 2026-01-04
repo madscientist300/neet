@@ -94,7 +94,8 @@
     "tags": [
       "growth",
       "hormones"
-    ]
+    ],
+    "thumbnail": "assets/thumbs/Plant Growth Regulators Hormones Comparison.png"
   },
   {
     "id": "7133295e",
@@ -186,13 +187,47 @@
     "thumbnail": "assets/thumbs/SEXUAL REPRODUCTION IN FLOWERING PLANTS MIND MAP.png"
   },
   {
-    "id": "52c5d81e",
+    "id": "bb785168",
+    "class": "12",
+    "chapter": "Sexual Reproduction in Flowering Plants",
+    "topic": "Sexual Reproduction in Flowering Plants Revision",
+    "type": "pdf",
+    "title": "Sexual Reproduction in Flowering Plants Revision",
+    "file": "resources/12/Sexual Reproduction in Flowering Plants/Sexual Reproduction in Flowering Plants Revision.pdf",
+    "tags": [],
+    "thumbnail": "assets/thumbs/Sexual Reproduction in Flowering Plants Revision.png"
+  },
+  {
+    "id": "2c46c6d9",
     "class": "11",
     "chapter": "The Living World",
-    "topic": "Chapter 1 The Living World",
+    "topic": "The Living World Revision",
     "type": "pdf",
-    "title": "Chapter 1 The Living World",
-    "file": "resources/11/The Living World/Chapter 1 The Living World.pdf",
-    "tags": []
+    "title": "The Living World Revision",
+    "file": "resources/11/The Living World/The Living World Revision.pdf",
+    "tags": [],
+    "thumbnail": "assets/thumbs/The Living World Revision.png"
+  },
+  {
+    "id": "5ec45163",
+    "class": "12",
+    "chapter": "Principle of Inheritance and Variation",
+    "topic": "Principles_of_Inheritance_and_Variations Revision",
+    "type": "pdf",
+    "title": "Principles_of_Inheritance_and_Variations Revision",
+    "file": "resources/12/Principle of Inheritance and Variation/Principles_of_Inheritance_and_Variations Revision.pdf",
+    "tags": [],
+    "thumbnail": "assets/thumbs/Principles_of_Inheritance_and_Variations Revision.png"
+  },
+  {
+    "id": "99f8b74b",
+    "class": "11",
+    "chapter": "Photosynthesis in Higher Plants",
+    "topic": "Photosynthesis in Higher Plants Revision",
+    "type": "pdf",
+    "title": "Photosynthesis in Higher Plants Revision",
+    "file": "resources/11/Photosynthesis in Higher Plants/Photosynthesis in Higher Plants Revision.pdf",
+    "tags": [],
+    "thumbnail": "assets/thumbs/Photosynthesis in Higher Plants Revision.png"
   }
 ]

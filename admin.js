@@ -154,7 +154,7 @@
     // --- Resource Loading (Simplified from app.js) ---
     async function loadResources() {
         try {
-            const r = await fetch('resources.json', { cache: 'no-store' });
+            const r = await fetch(`resources.json?t=${Date.now()}`, { cache: 'no-store' });
             resources = await r.json();
             render();
         } catch (e) {

@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs').promises;
 const crypto = require('crypto');
 const bcrypt = require('bcrypt');
+const { exec } = require('child_process');
 
 const app = express();
 const PORT = 3000;
@@ -202,6 +203,20 @@ app.post('/api/upload', upload.array('files'), validateAuth, async (req, res) =>
 
     // Write updated resources.json
     await fs.writeFile(resourcesPath, JSON.stringify(resources, null, 2), 'utf8');
+
+    // Trigger thumbnail generation
+    console.log('Triggering thumbnail generation...');
+    exec('python thumbnail_generator.py --write', (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Thumbnail generation error: ${error.message}`);
+        return;
+      }
+      if (stderr) {
+        console.error(`Thumbnail generation stderr: ${stderr}`);
+        return;
+      }
+      console.log(`Thumbnail generation output: ${stdout}`);
+    });
 
     res.json({
       success: true,

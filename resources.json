@@ -229,5 +229,16 @@
     "file": "resources/11/Photosynthesis in Higher Plants/Photosynthesis in Higher Plants Revision.pdf",
     "tags": [],
     "thumbnail": "assets/thumbs/Photosynthesis in Higher Plants Revision.png"
+  },
+  {
+    "id": "189b0532",
+    "class": "11",
+    "chapter": "Respiration in Plants",
+    "topic": "Respiration in Plants Revision",
+    "type": "pdf",
+    "title": "Respiration in Plants Revision",
+    "file": "resources/11/Respiration in Plants/Respiration in Plants Revision.pdf",
+    "tags": [],
+    "thumbnail": "assets/thumbs/Respiration in Plants Revision.png"
   }
 ]

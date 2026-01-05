@@ -209,17 +209,6 @@
     "thumbnail": "assets/thumbs/The Living World Revision.png"
   },
   {
-    "id": "5ec45163",
-    "class": "12",
-    "chapter": "Principle of Inheritance and Variation",
-    "topic": "Principles_of_Inheritance_and_Variations Revision",
-    "type": "pdf",
-    "title": "Principles_of_Inheritance_and_Variations Revision",
-    "file": "resources/12/Principle of Inheritance and Variation/Principles_of_Inheritance_and_Variations Revision.pdf",
-    "tags": [],
-    "thumbnail": "assets/thumbs/Principles_of_Inheritance_and_Variations Revision.png"
-  },
-  {
     "id": "99f8b74b",
     "class": "11",
     "chapter": "Photosynthesis in Higher Plants",
@@ -231,14 +220,47 @@
     "thumbnail": "assets/thumbs/Photosynthesis in Higher Plants Revision.png"
   },
   {
-    "id": "189b0532",
+    "id": "d46f0925",
+    "class": "11",
+    "chapter": "Plant Growth and Development",
+    "topic": "Plant Growth and Development Revision",
+    "type": "pdf",
+    "title": "Plant Growth and Development Revision",
+    "file": "resources/11/Plant Growth and Development/Plant Growth and Development Revision.pdf",
+    "tags": [],
+    "thumbnail": "assets/thumbs/Plant Growth and Development Revision.png"
+  },
+  {
+    "id": "73a4f42d",
+    "class": "12",
+    "chapter": "Molecular Basis of Inheritance",
+    "topic": "Molecular Basis of Inheritance Revision",
+    "type": "pdf",
+    "title": "Molecular Basis of Inheritance Revision",
+    "file": "resources/12/Molecular Basis of Inheritance/Molecular Basis of Inheritance Revision.pdf",
+    "tags": [],
+    "thumbnail": "assets/thumbs/Molecular Basis of Inheritance Revision.png"
+  },
+  {
+    "id": "71569373",
     "class": "11",
     "chapter": "Respiration in Plants",
-    "topic": "Respiration in Plants Revision",
+    "topic": "Respiration In Plants Revision",
     "type": "pdf",
-    "title": "Respiration in Plants Revision",
-    "file": "resources/11/Respiration in Plants/Respiration in Plants Revision.pdf",
+    "title": "Respiration In Plants Revision",
+    "file": "resources/11/Respiration in Plants/Respiration In Plants Revision.pdf",
     "tags": [],
-    "thumbnail": "assets/thumbs/Respiration in Plants Revision.png"
+    "thumbnail": "assets/thumbs/Respiration In Plants Revision.png"
+  },
+  {
+    "id": "f5bc91d1",
+    "class": "12",
+    "chapter": "Principle of Inheritance and Variation",
+    "topic": "Principles of Inheritance and Variations Revision",
+    "type": "pdf",
+    "title": "Principles of Inheritance and Variations Revision",
+    "file": "resources/12/Principle of Inheritance and Variation/Principles of Inheritance and Variations Revision.pdf",
+    "tags": [],
+    "thumbnail": "assets/thumbs/Principles of Inheritance and Variations Revision.png"
   }
 ]

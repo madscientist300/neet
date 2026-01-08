@@ -194,7 +194,9 @@
     "type": "pdf",
     "title": "Sexual Reproduction in Flowering Plants Revision",
     "file": "resources/12/Sexual Reproduction in Flowering Plants/Sexual Reproduction in Flowering Plants Revision.pdf",
-    "tags": [],
+    "tags": [
+      "revision"
+    ],
     "thumbnail": "assets/thumbs/Sexual Reproduction in Flowering Plants Revision.png"
   },
   {
@@ -205,7 +207,9 @@
     "type": "pdf",
     "title": "The Living World Revision",
     "file": "resources/11/The Living World/The Living World Revision.pdf",
-    "tags": [],
+    "tags": [
+      "revision"
+    ],
     "thumbnail": "assets/thumbs/The Living World Revision.png"
   },
   {
@@ -216,7 +220,9 @@
     "type": "pdf",
     "title": "Photosynthesis in Higher Plants Revision",
     "file": "resources/11/Photosynthesis in Higher Plants/Photosynthesis in Higher Plants Revision.pdf",
-    "tags": [],
+    "tags": [
+      "revision"
+    ],
     "thumbnail": "assets/thumbs/Photosynthesis in Higher Plants Revision.png"
   },
   {
@@ -227,7 +233,9 @@
     "type": "pdf",
     "title": "Plant Growth and Development Revision",
     "file": "resources/11/Plant Growth and Development/Plant Growth and Development Revision.pdf",
-    "tags": [],
+    "tags": [
+      "revision"
+    ],
     "thumbnail": "assets/thumbs/Plant Growth and Development Revision.png"
   },
   {
@@ -238,7 +246,9 @@
     "type": "pdf",
     "title": "Molecular Basis of Inheritance Revision",
     "file": "resources/12/Molecular Basis of Inheritance/Molecular Basis of Inheritance Revision.pdf",
-    "tags": [],
+    "tags": [
+      "revision"
+    ],
     "thumbnail": "assets/thumbs/Molecular Basis of Inheritance Revision.png"
   },
   {
@@ -249,7 +259,9 @@
     "type": "pdf",
     "title": "Principles of Inheritance and Variations Revision",
     "file": "resources/12/Principle of Inheritance and Variation/Principles of Inheritance and Variations Revision.pdf",
-    "tags": [],
+    "tags": [
+      "revision"
+    ],
     "thumbnail": "assets/thumbs/Principles of Inheritance and Variations Revision.png"
   },
   {
@@ -260,7 +272,35 @@
     "type": "pdf",
     "title": "Respiration In Plants Revision",
     "file": "resources/11/Respiration in Plants/Respiration In Plants Revision.pdf",
-    "tags": [],
+    "tags": [
+      "revision"
+    ],
     "thumbnail": "assets/thumbs/Respiration In Plants Revision.png"
+  },
+  {
+    "id": "d7439199",
+    "class": "12",
+    "chapter": "Microbes in Human Welfare",
+    "topic": "Microbes in Human Welfare Revision",
+    "type": "pdf",
+    "title": "Microbes in Human Welfare Revision",
+    "file": "resources/12/Microbes in Human Welfare/Microbes in Human Welfare Revision.pdf",
+    "tags": [
+      "revision"
+    ],
+    "thumbnail": "assets/thumbs/Microbes in Human Welfare Revision.png"
+  },
+  {
+    "id": "b35012df",
+    "class": "12",
+    "chapter": "Organisms and Populations",
+    "topic": "Organisms and Populations Revision",
+    "type": "pdf",
+    "title": "Organisms and Populations Revision",
+    "file": "resources/12/Organisms and Populations/Organisms and Populations Revision.pdf",
+    "tags": [
+      "revision"
+    ],
+    "thumbnail": "assets/thumbs/Organisms and Populations Revision.png"
   }
 ]

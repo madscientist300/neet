@@ -302,5 +302,31 @@
       "revision"
     ],
     "thumbnail": "assets/thumbs/Organisms and Populations Revision.png"
+  },
+  {
+    "id": "283d1d0d",
+    "class": "12",
+    "chapter": "Ecosystem",
+    "topic": "Ecosystem Revision",
+    "type": "pdf",
+    "title": "Ecosystem Revision",
+    "file": "resources/12/Ecosystem/Ecosystem Revision.pdf",
+    "tags": [
+      "revision"
+    ],
+    "thumbnail": "assets/thumbs/Ecosystem Revision.png"
+  },
+  {
+    "id": "d5038532",
+    "class": "12",
+    "chapter": "Biodiversity and Conservation",
+    "topic": "Biodiversity and Conservation Revision",
+    "type": "pdf",
+    "title": "Biodiversity and Conservation Revision",
+    "file": "resources/12/Biodiversity and Conservation/Biodiversity and Conservation Revision.pdf",
+    "tags": [
+      "revision"
+    ],
+    "thumbnail": "assets/thumbs/Biodiversity and Conservation Revision.png"
   }
 ]

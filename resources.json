@@ -350,7 +350,9 @@
     "type": "pdf",
     "title": "Anatomy of Flowering Plants Revision",
     "file": "resources/11/Anatomy of Flowering Plants/Anatomy of Flowering Plants Revision.pdf",
-    "tags": [],
+    "tags": [
+      "revision"
+    ],
     "thumbnail": "assets/thumbs/Anatomy of Flowering Plants Revision.png"
   }
 ]

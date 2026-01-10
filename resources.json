@@ -354,5 +354,18 @@
       "revision"
     ],
     "thumbnail": "assets/thumbs/Anatomy of Flowering Plants Revision.png"
+  },
+  {
+    "id": "3e7ec124",
+    "class": "11",
+    "chapter": "Morphology of Flowering Plants",
+    "topic": "Morphology of Flowering Plants Revision",
+    "type": "pdf",
+    "title": "Morphology of Flowering Plants Revision",
+    "file": "resources/11/Morphology of Flowering Plants/Morphology of Flowering Plants Revision.pdf",
+    "tags": [
+      "revision"
+    ],
+    "thumbnail": "assets/thumbs/Morphology of Flowering Plants Revision.png"
   }
 ]

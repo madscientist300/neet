@@ -337,7 +337,9 @@
     "type": "pdf",
     "title": "Cell Cycle and Cell Division Revision",
     "file": "resources/11/Cell Cycle and Cell Division/Cell Cycle and Cell Division Revision.pdf",
-    "tags": [],
+    "tags": [
+      "revision"
+    ],
     "thumbnail": "assets/thumbs/Cell Cycle and Cell Division Revision.png"
   }
 ]

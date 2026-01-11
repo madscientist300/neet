@@ -354,5 +354,18 @@
       "revision"
     ],
     "thumbnail": "assets/thumbs/Morphology of Flowering Plants Revision.png"
+  },
+  {
+    "id": "8defcc3b",
+    "class": "11",
+    "chapter": "Respiration in Plants",
+    "topic": "Respiration In Plants Revision",
+    "type": "pdf",
+    "title": "Respiration In Plants Revision",
+    "file": "resources/11/Respiration in Plants/Respiration In Plants Revision.pdf",
+    "tags": [
+      "revision"
+    ],
+    "thumbnail": "assets/thumbs/Respiration In Plants Revision.png"
   }
 ]

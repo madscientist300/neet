@@ -354,5 +354,57 @@
       "revision"
     ],
     "thumbnail": "assets/thumbs/Morphology of Flowering Plants Revision.png"
+  },
+  {
+    "id": "4988d392",
+    "class": "11",
+    "chapter": "Plant Kingdom",
+    "topic": "Plant Kingdom Revision",
+    "type": "pdf",
+    "title": "Plant Kingdom Revision",
+    "file": "resources/11/Plant Kingdom/Plant Kingdom Revision.pdf",
+    "tags": [
+      "revision"
+    ],
+    "thumbnail": "assets/thumbs/Plant Kingdom Revision.png"
+  },
+  {
+    "id": "1c8b2761",
+    "class": "11",
+    "chapter": "Respiration in Plants",
+    "topic": "Respiration in Plant Revision",
+    "type": "pdf",
+    "title": "Respiration in Plant Revision",
+    "file": "resources/11/Respiration in Plants/Respiration in Plant Revision.pdf",
+    "tags": [
+      "revision"
+    ],
+    "thumbnail": "assets/thumbs/Respiration in Plant Revision.png"
+  },
+  {
+    "id": "bd78c48b",
+    "class": "11",
+    "chapter": "Biological Classification",
+    "topic": "Biological Classification Revision",
+    "type": "pdf",
+    "title": "Biological Classification Revision",
+    "file": "resources/11/Biological Classification/Biological Classification Revision.pdf",
+    "tags": [
+      "revision"
+    ],
+    "thumbnail": "assets/thumbs/Biological Classification Revision.png"
+  },
+  {
+    "id": "139f2bb6",
+    "class": "11",
+    "chapter": "Cell The unit of Life",
+    "topic": "Cell The Unit of Life Revision",
+    "type": "pdf",
+    "title": "Cell The Unit of Life Revision",
+    "file": "resources/11/Cell The unit of Life/Cell The Unit of Life Revision.pdf",
+    "tags": [
+      "revision"
+    ],
+    "thumbnail": "assets/thumbs/Cell The Unit of Life Revision.png"
   }
 ]

@@ -174,10 +174,58 @@
     });
   }
 
+  // Chapter Order Configuration
+  const chapterOrder = {
+    '11': [
+      "The Living World",
+      "Biological Classification",
+      "Plant Kingdom",
+      "Morphology of Flowering Plants",
+      "Anatomy of Flowering Plants",
+      "Cell: The unit of Life",
+      "Cell The unit of Life", // Handling variation
+      "Cell Cycle and Cell Division",
+      "Photosynthesis in Higher Plants",
+      "Respiration in Plants",
+      "Plant Growth and Development"
+    ].map(s => s.toLowerCase()),
+    '12': [
+      "Sexual Reproduction in Flowering Plants",
+      "Principle of Inheritance and Variation",
+      "Molecular Basis of Inheritance",
+      "Microbes in Human Welfare",
+      "Organisms and Populations",
+      "Ecosystem",
+      "Biodiversity and Conservation"
+    ].map(s => s.toLowerCase())
+  };
+
   function populateChapterOptions() {
     const cls = dropdownState.class.value.toString().trim().toLowerCase();
     const filtered = resources.filter(r => !cls || (r._classNorm === cls));
-    const chapters = unique(filtered.map(r => r.chapter || 'Unknown')).sort((a, b) => a.localeCompare(b));
+    let chapters = unique(filtered.map(r => r.chapter || 'Unknown'));
+
+    // Custom sort if class is 11 or 12
+    if (cls === '11' || cls === '12') {
+      const order = chapterOrder[cls];
+      chapters = chapters.sort((a, b) => {
+        const al = a.toLowerCase();
+        const bl = b.toLowerCase();
+        const ai = order.indexOf(al);
+        const bi = order.indexOf(bl);
+
+        const a_exists = ai !== -1;
+        const b_exists = bi !== -1;
+
+        if (a_exists && b_exists) return ai - bi;
+        if (a_exists) return -1;
+        if (b_exists) return 1;
+        return al.localeCompare(bl);
+      });
+    } else {
+      // Default alpha sort
+      chapters = chapters.sort((a, b) => a.localeCompare(b));
+    }
 
     const options = [{ value: '', text: 'All Chapters' }];
     chapters.forEach(ch => options.push({ value: ch, text: ch }));
@@ -218,6 +266,39 @@
       if (tagVal && !(r._tagsNorm || []).includes(tagVal)) return false;
       if (q && !(r._searchHay || '').includes(q)) return false;
       return true;
+    });
+
+    // Sort filtered results: Class -> Custom Chapter Order -> Title
+    filtered.sort((a, b) => {
+      const classA = (a.class || '').toString().trim();
+      const classB = (b.class || '').toString().trim();
+
+      // 1. Sort by Class (11 before 12)
+      if (classA !== classB) {
+        return classA.localeCompare(classB, undefined, { numeric: true });
+      }
+
+      // 2. Sort by Chapter (Custom Order)
+      const chapA = (a.chapter || '').toLowerCase();
+      const chapB = (b.chapter || '').toLowerCase();
+
+      if (chapA !== chapB) {
+        const order = chapterOrder[classA];
+        if (order) {
+          const idxA = order.indexOf(chapA);
+          const idxB = order.indexOf(chapB);
+          const existsA = idxA !== -1;
+          const existsB = idxB !== -1;
+
+          if (existsA && existsB) return idxA - idxB;
+          if (existsA) return -1;
+          if (existsB) return 1;
+        }
+        return chapA.localeCompare(chapB);
+      }
+
+      // 3. Sort by Title (Alphabetical fallback)
+      return (a.title || '').localeCompare(b.title || '');
     });
 
     grid.innerHTML = '';

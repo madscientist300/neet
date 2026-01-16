@@ -406,5 +406,38 @@
       "revision"
     ],
     "thumbnail": "assets/thumbs/Cell The Unit of Life Revision.png"
+  },
+  {
+    "id": "ec6116f2",
+    "class": "11",
+    "chapter": "Cell The unit of Life",
+    "topic": "Cell - Basic",
+    "type": "pdf",
+    "title": "Cell - Basic",
+    "file": "resources/11/Cell The unit of Life/Cell - Basic.pdf",
+    "tags": [],
+    "thumbnail": "assets/thumbs/Cell - Basic.png"
+  },
+  {
+    "id": "540f4925",
+    "class": "11",
+    "chapter": "Cell The unit of Life",
+    "topic": "Cell - Basic 1",
+    "type": "pdf",
+    "title": "Cell - Basic 1",
+    "file": "resources/11/Cell The unit of Life/Cell - Basic 1.pdf",
+    "tags": [],
+    "thumbnail": "assets/thumbs/Cell - Basic 1.png"
+  },
+  {
+    "id": "26ea030d",
+    "class": "11",
+    "chapter": "Cell The unit of Life",
+    "topic": "Cell -Basics 2",
+    "type": "pdf",
+    "title": "Cell -Basics 2",
+    "file": "resources/11/Cell The unit of Life/Cell -Basics 2.pdf",
+    "tags": [],
+    "thumbnail": "assets/thumbs/Cell -Basics 2.png"
   }
 ]

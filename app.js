@@ -320,6 +320,7 @@
   function badgeForResource(res) {
     const t = (res.type || '').toString().toLowerCase();
     if (t === 'pdf') return { cls: 'pdf', label: 'PDF', icon: pdfIcon() };
+    if (t === 'ppt' || t === 'pptx') return { cls: 'ppt', label: 'PPT', icon: pptIcon() };
     if (t === 'image') return { cls: 'image', label: 'Image', icon: imageIcon() };
     if (t === 'url') return { cls: 'url', label: 'Link', icon: linkIcon() };
     // fallback: treat as file
@@ -328,6 +329,7 @@
 
   // small inline SVG icons (kept tiny)
   function pdfIcon() { return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="18" height="22" x="3" y="1" rx="2" fill="#fff"/><path d="M7 8h10" stroke="#000" stroke-width="1.2" stroke-linecap="round"/></svg>`; }
+  function pptIcon() { return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="18" height="14" x="3" y="5" rx="1.5" fill="#fff"/><rect width="14" height="10" x="5" y="7" rx="1" fill="#D24726"/><path d="M8 10h8M8 12h5" stroke="#fff" stroke-width="1" stroke-linecap="round"/></svg>`; }
   function imageIcon() { return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="14" x="2" y="4" rx="1.5" fill="#fff"/><circle cx="8.5" cy="8.5" r="1.8" fill="#000"/></svg>`; }
   function linkIcon() { return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 14a3.5 3.5 0 010-4.95l3-3a3.5 3.5 0 014.95 4.95l-1 1" stroke="#000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 10a3.5 3.5 0 010 4.95l-3 3a3.5 3.5 0 01-4.95-4.95l1-1" stroke="#000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`; }
   function fileIcon() { return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="20" x="4" y="2" rx="2" fill="#fff"/><path d="M8 8h8" stroke="#000" stroke-width="1.2" stroke-linecap="round"/></svg>`; }
@@ -531,6 +533,54 @@
       fallback.style.fontSize = '14px';
       fallback.style.color = 'var(--muted)';
       fallback.innerHTML = `If the preview does not load you can <a href="${res.file}" target="_blank" rel="noopener">open the PDF in a new tab</a>.`;
+
+      body.appendChild(fallback);
+      body.appendChild(iframe);
+      wrap.appendChild(body);
+      modalEl.appendChild(wrap);
+
+      // prevent body scroll while modal open
+      document.body.style.overflow = 'hidden';
+
+      return;
+    }
+    if (res.type === 'ppt' || res.type === 'pptx') {
+      const modalEl = document.getElementById('modal');
+      modalEl.innerHTML = '';
+      modalEl.classList.add('active');
+      modalEl.setAttribute('aria-hidden', 'false');
+
+      // build viewer wrapper
+      const wrap = document.createElement('div'); wrap.className = 'viewer';
+      const top = document.createElement('div'); top.className = 'top';
+      const title = document.createElement('div'); title.id = 'vtitle'; title.textContent = res.title || '';
+      const close = document.createElement('button'); close.textContent = 'Close';
+      close.addEventListener('click', () => { modalEl.classList.remove('active'); modalEl.setAttribute('aria-hidden', 'true'); modalEl.innerHTML = ''; document.body.style.overflow = ''; });
+      top.appendChild(title); top.appendChild(close); wrap.appendChild(top);
+
+      // create iframe for PowerPoint viewer
+      const body = document.createElement('div');
+      body.style.flex = '1';
+      body.style.display = 'flex';
+      body.style.flexDirection = 'column';
+      body.style.overflow = 'hidden';
+
+      const iframe = document.createElement('iframe');
+      // Use Microsoft Office Online viewer
+      const rawBase = 'https://raw.githubusercontent.com/madscientist300/neet/main/';
+      const rawUrl = rawBase + (res.file || '').replace(/^\/+/, '');
+      iframe.src = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(rawUrl)}`;
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.border = '0';
+      iframe.setAttribute('loading', 'lazy');
+
+      // fallback link
+      const fallback = document.createElement('div');
+      fallback.style.padding = '10px';
+      fallback.style.fontSize = '14px';
+      fallback.style.color = 'var(--muted)';
+      fallback.innerHTML = `If the preview does not load you can <a href="${res.file}" target="_blank" rel="noopener">download the PowerPoint file</a>.`;
 
       body.appendChild(fallback);
       body.appendChild(iframe);

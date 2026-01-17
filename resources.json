@@ -437,7 +437,35 @@
     "type": "pdf",
     "title": "Cell -Basics 2",
     "file": "resources/11/Cell The unit of Life/Cell -Basics 2.pdf",
-    "tags": [],
+    "tags": [
+      "basic"
+    ],
     "thumbnail": "assets/thumbs/Cell -Basics 2.png"
+  },
+  {
+    "id": "e5a96103",
+    "class": "11",
+    "chapter": "Cell The unit of Life",
+    "topic": "Cell - Basics 3",
+    "type": "pdf",
+    "title": "Cell - Basics 3",
+    "file": "resources/11/Cell The unit of Life/Cell - Basics 3.pdf",
+    "tags": [
+      "basic"
+    ],
+    "thumbnail": "assets/thumbs/Cell - Basics 3.png"
+  },
+  {
+    "id": "43092f39",
+    "class": "11",
+    "chapter": "Cell The unit of Life",
+    "topic": "Cell - Basic 3 PPT",
+    "type": "ppt",
+    "title": "Cell - Basic 3 PPT",
+    "file": "resources/11/Cell The unit of Life/Cell - Basic 3 PPT.pptx",
+    "tags": [
+      "basic"
+    ],
+    "thumbnail": "assets/thumbs/Cell The Unit of Life ppt.jpg"
   }
 ]

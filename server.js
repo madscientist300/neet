@@ -88,20 +88,35 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  // Accept only PDFs and images
+  // Accept PDFs, images, and PowerPoint files
   const allowedTypes = [
     'application/pdf',
     'image/png',
     'image/jpeg',
     'image/jpg',
-    'image/webp'
+    'image/webp',
+    'application/vnd.ms-powerpoint',                                                      // .ppt
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation',          // .pptx
+    'application/mspowerpoint',                                                            // alternative .ppt
+    'application/powerpoint',                                                              // alternative .ppt
+    'application/x-mspowerpoint'                                                           // alternative .ppt
   ];
 
+  // Check MIME type
   if (allowedTypes.includes(file.mimetype)) {
     cb(null, true);
-  } else {
-    cb(new Error('Invalid file type. Only PDF and image files are allowed.'), false);
+    return;
   }
+
+  // Fallback: Check file extension for PowerPoint files (some browsers send wrong MIME types)
+  const ext = file.originalname.toLowerCase().split('.').pop();
+  if (ext === 'ppt' || ext === 'pptx') {
+    console.log(`⚠️ PowerPoint file detected by extension (.${ext}) with MIME type: ${file.mimetype}`);
+    cb(null, true);
+    return;
+  }
+
+  cb(new Error(`Invalid file type. Only PDF, image, and PowerPoint files are allowed. Received: ${file.mimetype}`), false);
 };
 
 const upload = multer({
@@ -117,9 +132,23 @@ function generateId() {
   return crypto.randomBytes(4).toString('hex');
 }
 
-// Get file type from mimetype
-function getFileType(mimetype) {
+// Get file type from mimetype and filename
+function getFileType(mimetype, filename = '') {
   if (mimetype === 'application/pdf') return 'pdf';
+
+  // Check PowerPoint MIME types
+  if (mimetype === 'application/vnd.ms-powerpoint' ||
+    mimetype === 'application/vnd.openxmlformats-officedocument.presentationml.presentation' ||
+    mimetype === 'application/mspowerpoint' ||
+    mimetype === 'application/powerpoint' ||
+    mimetype === 'application/x-mspowerpoint') {
+    return 'ppt';
+  }
+
+  // Fallback: Check file extension
+  const ext = filename.toLowerCase().split('.').pop();
+  if (ext === 'ppt' || ext === 'pptx') return 'ppt';
+
   if (mimetype.startsWith('image/')) return 'image';
   return 'file';
 }
@@ -184,7 +213,7 @@ app.post('/api/upload', upload.array('files'), validateAuth, async (req, res) =>
         class: classNum,
         chapter: chapter,
         topic: fileName,
-        type: getFileType(file.mimetype),
+        type: getFileType(file.mimetype, file.originalname),
         title: fileName,
         file: relativePath,
         tags: tagArray

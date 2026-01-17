@@ -538,6 +538,11 @@ a.action:hover {
   color: #2b0606;
 }
 
+.file-badge.ppt {
+  background: linear-gradient(90deg, #D24726, #e8653f);
+  color: #2b0606;
+}
+
 .file-badge.image {
   background: linear-gradient(90deg, var(--badge-image), #6ff5cf);
   color: #022b10;

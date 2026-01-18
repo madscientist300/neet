@@ -467,5 +467,18 @@
       "basic"
     ],
     "thumbnail": "assets/thumbs/Cell The Unit of Life ppt.jpg"
+  },
+  {
+    "id": "7829663a",
+    "class": "11",
+    "chapter": "Cell Cycle and Cell Division",
+    "topic": "Cell Division Basic 1",
+    "type": "pdf",
+    "title": "Cell Division Basic 1",
+    "file": "resources/11/Cell Cycle and Cell Division/Cell Division Basic 1.pdf",
+    "tags": [
+      "basic"
+    ],
+    "thumbnail": "assets/thumbs/Cell Division Basic 1.png"
   }
 ]

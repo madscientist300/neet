@@ -480,5 +480,18 @@
       "basic"
     ],
     "thumbnail": "assets/thumbs/Cell Division Basic 1.png"
+  },
+  {
+    "id": "2ae77b47",
+    "class": "11",
+    "chapter": "Cell Cycle and Cell Division",
+    "topic": "Cell Division Basic 2",
+    "type": "pdf",
+    "title": "Cell Division Basic 2",
+    "file": "resources/11/Cell Cycle and Cell Division/Cell Division Basic 2.pdf",
+    "tags": [
+      "basic"
+    ],
+    "thumbnail": "assets/thumbs/Cell Division Basic 2.png"
   }
 ]

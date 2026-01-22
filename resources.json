@@ -433,40 +433,27 @@
     "id": "26ea030d",
     "class": "11",
     "chapter": "Cell The unit of Life",
-    "topic": "Cell -Basics 2",
+    "topic": "Cell -Basic 2",
     "type": "pdf",
-    "title": "Cell -Basics 2",
-    "file": "resources/11/Cell The unit of Life/Cell -Basics 2.pdf",
+    "title": "Cell -Basic 2",
+    "file": "resources/11/Cell The unit of Life/Cell -Basic 2.pdf",
     "tags": [
       "basic"
     ],
-    "thumbnail": "assets/thumbs/Cell -Basics 2.png"
+    "thumbnail": "assets/thumbs/Cell -Basic 2.png"
   },
   {
     "id": "e5a96103",
     "class": "11",
     "chapter": "Cell The unit of Life",
-    "topic": "Cell - Basics 3",
+    "topic": "Cell - Basic 3",
     "type": "pdf",
-    "title": "Cell - Basics 3",
-    "file": "resources/11/Cell The unit of Life/Cell - Basics 3.pdf",
+    "title": "Cell - Basic 3",
+    "file": "resources/11/Cell The unit of Life/Cell - Basic 3.pdf",
     "tags": [
       "basic"
     ],
-    "thumbnail": "assets/thumbs/Cell - Basics 3.png"
-  },
-  {
-    "id": "43092f39",
-    "class": "11",
-    "chapter": "Cell The unit of Life",
-    "topic": "Cell - Basic 3 PPT",
-    "type": "ppt",
-    "title": "Cell - Basic 3 PPT",
-    "file": "resources/11/Cell The unit of Life/Cell - Basic 3 PPT.pptx",
-    "tags": [
-      "basic"
-    ],
-    "thumbnail": "assets/thumbs/Cell The Unit of Life ppt.jpg"
+    "thumbnail": "assets/thumbs/Cell - Basic 3.png"
   },
   {
     "id": "7829663a",
@@ -493,5 +480,31 @@
       "basic"
     ],
     "thumbnail": "assets/thumbs/Cell Division Basic 2.png"
+  },
+  {
+    "id": "6731249a",
+    "class": "11",
+    "chapter": "Biological Classification",
+    "topic": "Monera Basics",
+    "type": "pdf",
+    "title": "Monera Basics",
+    "file": "resources/11/Biological Classification/Monera Basics.pdf",
+    "tags": [
+      "basic"
+    ],
+    "thumbnail": "assets/thumbs/Monera Basics.png"
+  },
+  {
+    "id": "59cedc5a",
+    "class": "11",
+    "chapter": "Biological Classification",
+    "topic": "Protista Basics",
+    "type": "pdf",
+    "title": "Protista Basics",
+    "file": "resources/11/Biological Classification/Protista Basics.pdf",
+    "tags": [
+      "basic"
+    ],
+    "thumbnail": "assets/thumbs/Protista Basics.png"
   }
 ]

@@ -440,7 +440,7 @@
     "tags": [
       "basic"
     ],
-    "thumbnail": "assets/thumbs/Cell -Basic 2.png"
+    "thumbnail": "assets/thumbs/Cell -Basics 2.png"
   },
   {
     "id": "e5a96103",
@@ -453,7 +453,7 @@
     "tags": [
       "basic"
     ],
-    "thumbnail": "assets/thumbs/Cell - Basic 3.png"
+    "thumbnail": "assets/thumbs/Cell - Basics 3.png"
   },
   {
     "id": "7829663a",
@@ -506,5 +506,31 @@
       "basic"
     ],
     "thumbnail": "assets/thumbs/Protista Basics.png"
+  },
+  {
+    "id": "7f343f18",
+    "class": "11",
+    "chapter": "Biological Classification",
+    "topic": "Fungi Basics",
+    "type": "pdf",
+    "title": "Fungi Basics",
+    "file": "resources/11/Biological Classification/Fungi Basics.pdf",
+    "tags": [
+      "basic"
+    ],
+    "thumbnail": "assets/thumbs/Fungi Basics.png"
+  },
+  {
+    "id": "acbf3ae2",
+    "class": "11",
+    "chapter": "Biological Classification",
+    "topic": "Viruses Basics",
+    "type": "pdf",
+    "title": "Viruses Basics",
+    "file": "resources/11/Biological Classification/Viruses Basics.pdf",
+    "tags": [
+      "basic"
+    ],
+    "thumbnail": "assets/thumbs/Viruses Basics.png"
   }
 ]

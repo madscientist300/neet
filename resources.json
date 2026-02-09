@@ -532,5 +532,18 @@
       "basic"
     ],
     "thumbnail": "assets/thumbs/Viruses Basics.png"
+  },
+  {
+    "id": "a35e4a0f",
+    "class": "12",
+    "chapter": "Microbes in Human Welfare",
+    "topic": "Microbes in Human Welfare Notes",
+    "type": "pdf",
+    "title": "Microbes in Human Welfare Notes",
+    "file": "resources/12/Microbes in Human Welfare/Microbes in Human Welfare Notes.pdf",
+    "tags": [
+      "notes"
+    ],
+    "thumbnail": "assets/thumbs/Microbes in Human Welfare Notes.png"
   }
 ]
